@@ -19,17 +19,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.gitee.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="anynone">
-<meta property="og:url" content="https://anynone.gitee.io/page/9/index.html">
+<meta property="og:url" content="https://anynone.github.io/page/9/index.html">
 <meta property="og:site_name" content="anynone">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="山丘之王">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://anynone.gitee.io/page/9/">
+<link rel="canonical" href="https://anynone.github.io/page/9/">
 
 
 
@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -172,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://anynone.gitee.io/2021/12/22/php-ext-dev-1/">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2022/01/01/docker-reject-bind-port/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -185,7 +185,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/22/php-ext-dev-1/" class="post-title-link" itemprop="url">php扩展开发（一）</a>
+          <a href="/2022/01/01/docker-reject-bind-port/" class="post-title-link" itemprop="url">禁用docker开放的端口</a>
         </h2>
 
         <div class="post-meta-container">
@@ -196,7 +196,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-12-22 22:11:55" itemprop="dateCreated datePublished" datetime="2021-12-22T22:11:55+08:00">2021-12-22</time>
+      <time title="创建时间：2022-01-01 03:21:37" itemprop="dateCreated datePublished" datetime="2022-01-01T03:21:37+08:00">2022-01-01</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -216,36 +216,47 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>万事开头难，为了开头简单一点，按照惯例先完成Hello World的编写。</p>
-<p>首先找到php源码包，里面有个ext目录。ext目录包含php内置的一些扩展包。如下</p>
-<img src="/images/php-ext-dev-1-1.jpg" alt="php-ext-dev-1-1" style="margin-left:0px;" />
+          <p>之前遇到了docker绑定本地端口后通过iptables INPUT 链无法禁用绑定端口访问的问题，刚好深夜醒了睡不着，写篇日志助眠</p>
+<p>顺便说下，我的局域网ip是 <code>192.168.31.105</code></p>
+<ol>
+<li>临时创建nginx端口映射，建立容器，绑定本地端口80</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run --rm -p 8081:80  -it nginx</span><br></pre></td></tr></table></figure>
 
-<p>比较特殊的是<code>ext_skel.php</code>，这是php扩展的创建脚本，执行下面命令可以创建一个扩展</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php ./ext_skel.php --ext my_ext</span><br></pre></td></tr></table></figure>
+<p><span style="color:red;">试下访问本机8081端口尝试是可以通的</span><br><img src="/images/docker-reject-port/1.jpg" alt="1" style="zoom:67%;margin-left:0px;" /></p>
+<ol start="2">
+<li>REJECT掉INPUT链的8081端口访问</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp --dport 8081 -j REJECT</span><br></pre></td></tr></table></figure>
 
-<p>出现下面的结果表示正常</p>
-<img src="/images/php-ext-dev-1-2.jpg" alt="php-ext-dev-1-2" style="margin-left: 0px; zoom: 67%;" />
+<p><span style="color:red;">再次试下访问本机8081端口，<span style="color:green;">还是可以通的</span></span></p>
+<img src="/images/docker-reject-port/what.gif" alt="what" style="zoom:80%;margin-left:0px;" />
 
-<p>一个扩展就这么创建完成了，扩展名称<code>my_ext</code>。进入到扩展目录，使用下面命令编译扩展到php运行环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phpize &amp;&amp; ./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-<p>一般不会出问题，如果编译失败或者报错，检查phpize，php-config是否在PATH目录，make， gcc，gcc-c++或者g++是否安装</p>
-<p>此时扩展还未加载，需要增加扩展配置文件，如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;extension=my_ext.so&quot;</span> &gt; /usr/<span class="built_in">local</span>/php/php-7.4.27/etc/conf.d/my_ext.ini</span><br></pre></td></tr></table></figure>
+<p>问题如上！！！！！！！</p>
+<p>解决方式也很简单，只需要RETURN掉 DOCKER链的对应端口请求，命令如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -I DOCKER &lt;要RETURN掉的行号&gt; ! -i &lt;DOCKER网卡名称&gt; -p tcp -m tcp --dport &lt;宿主机端口号&gt; -j RETURN</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>安装位置不同，配置文件路径会有所不同。使用<code>php --ini</code>命令查看当前php环境配置文件路径</p>
+<p>查询行号和网卡名称</p>
 </blockquote>
-<p>然后查看扩展是否正常</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php --ri my_ext</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -nvL DOCKER --line-number</span><br></pre></td></tr></table></figure>
 
-<img src="/images/php-ext-dev-1-3.jpg" alt="php-ext-dev-1-3" style="margin-left: 0px; zoom: 67%;" />
+<p><img src="/images/docker-reject-port/2.jpg" alt="2"></p>
+<blockquote>
+<p>对应RETURN DOCKER链的规则</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -I DOCKER 2 ! -i docker0 -p tcp -m tcp --dport 8081 -j RETURN</span><br></pre></td></tr></table></figure>
 
-<p>默认情况下，扩展创建脚本会创建测试函数，分别是<code>my_ext_test1</code>和<code>my_ext_test2</code></p>
-<p>进入php交互模式测试扩展是否正常运行</p>
-<img src="/images/php-ext-dev-1-4.jpg" alt="php-ext-dev-1-4" style="margin-left: 0px; zoom: 67%;" />
+<p>RETURN后进入INPUT链，由于之前INPUT 链禁用了8081端口，请求被丢弃</p>
+<img src="/images/docker-reject-port/3.jpg" alt="3" style="zoom:67%;margin-left:0px;" />
 
-<p>这就是php扩展的HELLO WORLD了。后续可以基于此进行扩展开发</p>
+
+
+<p>到此，问题解决了，其实倒也不是什么疑难问题，主要是一般请求都会走INPUT链，通过INPUT链禁用本机端口习惯了。而安装docker后，docker容器的请求在prerouting阶段转发到DOCKER链，之后转发到容器ip。如下图，docker容器启动后必然会在iptables增加如下规则：</p>
+<img src="/images/docker-reject-port/4.jpg" alt="4" style="zoom:80%;margin-left:0px;" />
+
+<p>请求被转发到DOCKER链，之后转发到容器ip，根本没走IPNUT链</p>
+<img src="/images/docker-reject-port/5.jpg" alt="5" style="zoom:150%;margin-left:0px;" />
 
       
     </div>
@@ -265,7 +276,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

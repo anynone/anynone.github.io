@@ -19,17 +19,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.gitee.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="anynone">
-<meta property="og:url" content="https://anynone.gitee.io/page/10/index.html">
+<meta property="og:url" content="https://anynone.github.io/page/10/index.html">
 <meta property="og:site_name" content="anynone">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="山丘之王">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://anynone.gitee.io/page/10/">
+<link rel="canonical" href="https://anynone.github.io/page/10/">
 
 
 
@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -172,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://anynone.gitee.io/2021/12/14/git-precommit-docker-md/">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2021/12/22/php-ext-dev-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -185,7 +185,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/12/14/git-precommit-docker-md/" class="post-title-link" itemprop="url">docker环境 git 提交前验证php语法</a>
+          <a href="/2021/12/22/php-ext-dev-1/" class="post-title-link" itemprop="url">php扩展开发（一）</a>
         </h2>
 
         <div class="post-meta-container">
@@ -196,7 +196,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-12-14 08:19:40" itemprop="dateCreated datePublished" datetime="2021-12-14T08:19:40+08:00">2021-12-14</time>
+      <time title="创建时间：2021-12-22 22:11:55" itemprop="dateCreated datePublished" datetime="2021-12-22T22:11:55+08:00">2021-12-22</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -216,21 +216,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><p>环境</p>
-<blockquote>
-<p>系统: linux<br>php运行环境: docker(本地目录绑定)</p>
-</blockquote>
-</li>
-<li><p>添加hook脚本 <code>.git/hooks/pre-commit</code></p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 错误消息内容</span></span><br><span class="line">IS_ERROR_MESSAGE=()</span><br><span class="line"></span><br><span class="line">while read st file</span><br><span class="line">do</span><br><span class="line"></span><br><span class="line">    # 文件状态为 D 时跳出本次循环</span><br><span class="line">    if [ &#x27;D&#x27; == &quot;$st&quot; ]</span><br><span class="line">    then</span><br><span class="line">        echo $file</span><br><span class="line">        continue</span><br><span class="line">    fi</span><br><span class="line"></span><br><span class="line">    # 文件末为不是 .php 时输出文件，并跳出本次循环</span><br><span class="line">    if [[ ! &quot;$file&quot;  =~ (\.php$) ]]</span><br><span class="line">    then</span><br><span class="line">        echo $file</span><br><span class="line">        continue</span><br><span class="line">    fi</span><br><span class="line">    echo $file</span><br><span class="line">    </span><br><span class="line">    ## 这里替换为docker镜像内路径/home/wwwroot/project_name</span><br><span class="line">    PHP_LINT=`docker exec -i myphp5.5 php -l /home/wwwroot/project_name/$file`</span><br><span class="line"></span><br><span class="line">    # 本文件不存在语法错误，输出结果，并跳出本次循环</span><br><span class="line">    if [ 0 -eq $? ]</span><br><span class="line">    then</span><br><span class="line">        echo $PHP_LINT</span><br><span class="line">        continue</span><br><span class="line">    fi</span><br><span class="line"></span><br><span class="line">    # 统计错误消息内容的数据个数</span><br><span class="line">    ERROR_COUNT=$&#123;#IS_ERROR_MESSAGE[@]&#125;</span><br><span class="line"></span><br><span class="line">    # 将错误的存放到数组里面</span><br><span class="line">    IS_ERROR_MESSAGE[$&#123;ERROR_COUNT&#125;]=$PHP_LINT</span><br><span class="line"></span><br><span class="line">done &lt;&lt;EOF</span><br><span class="line">`git diff --cached --name-status`</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">if [ -n &quot;$&#123;IS_ERROR_MESSAGE&#125;&quot; ]</span><br><span class="line">then</span><br><span class="line"></span><br><span class="line">    # 循环输出错误消息，并且指定文字颜色为红色</span><br><span class="line">    for ((i=0;i&lt;$&#123;#IS_ERROR_MESSAGE[@]&#125;;i++))</span><br><span class="line">    do</span><br><span class="line">        echo -e &quot;\033[31m $&#123;IS_ERROR_MESSAGE[$i]&#125; \033[0m&quot;</span><br><span class="line">    done</span><br><span class="line"></span><br><span class="line">    exit 1</span><br><span class="line"></span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">exit 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <p>万事开头难，为了开头简单一点，按照惯例先完成Hello World的编写。</p>
+<p>首先找到php源码包，里面有个ext目录。ext目录包含php内置的一些扩展包。如下</p>
+<img src="/images/php-ext-dev-1-1.jpg" alt="php-ext-dev-1-1" style="margin-left:0px;" />
 
-<p>net.ipv4.tcp_syncookies = 1<br>net.ipv4.tcp_tw_reuse = 1<br>net.ipv4.tcp_tw_recycle = 1<br>net.ipv4.tcp_fin_timeout = 30</p>
-<p>net.ipv4.tcp_tw_reuse = 1</p>
-<p>net.ipv4.tcp_tw_recycle  = 1</p>
-<p>net.ipv4.tcp_fin_timeout = 30</p>
+<p>比较特殊的是<code>ext_skel.php</code>，这是php扩展的创建脚本，执行下面命令可以创建一个扩展</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php ./ext_skel.php --ext my_ext</span><br></pre></td></tr></table></figure>
+
+<p>出现下面的结果表示正常</p>
+<img src="/images/php-ext-dev-1-2.jpg" alt="php-ext-dev-1-2" style="margin-left: 0px; zoom: 67%;" />
+
+<p>一个扩展就这么创建完成了，扩展名称<code>my_ext</code>。进入到扩展目录，使用下面命令编译扩展到php运行环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phpize &amp;&amp; ./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>一般不会出问题，如果编译失败或者报错，检查phpize，php-config是否在PATH目录，make， gcc，gcc-c++或者g++是否安装</p>
+<p>此时扩展还未加载，需要增加扩展配置文件，如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;extension=my_ext.so&quot;</span> &gt; /usr/<span class="built_in">local</span>/php/php-7.4.27/etc/conf.d/my_ext.ini</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装位置不同，配置文件路径会有所不同。使用<code>php --ini</code>命令查看当前php环境配置文件路径</p>
+</blockquote>
+<p>然后查看扩展是否正常</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php --ri my_ext</span><br></pre></td></tr></table></figure>
+
+<img src="/images/php-ext-dev-1-3.jpg" alt="php-ext-dev-1-3" style="margin-left: 0px; zoom: 67%;" />
+
+<p>默认情况下，扩展创建脚本会创建测试函数，分别是<code>my_ext_test1</code>和<code>my_ext_test2</code></p>
+<p>进入php交互模式测试扩展是否正常运行</p>
+<img src="/images/php-ext-dev-1-4.jpg" alt="php-ext-dev-1-4" style="margin-left: 0px; zoom: 67%;" />
+
+<p>这就是php扩展的HELLO WORLD了。后续可以基于此进行扩展开发</p>
 
       
     </div>
@@ -250,7 +265,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

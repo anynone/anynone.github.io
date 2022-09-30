@@ -19,17 +19,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.gitee.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="anynone">
-<meta property="og:url" content="https://anynone.gitee.io/page/5/index.html">
+<meta property="og:url" content="https://anynone.github.io/page/5/index.html">
 <meta property="og:site_name" content="anynone">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="山丘之王">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://anynone.gitee.io/page/5/">
+<link rel="canonical" href="https://anynone.github.io/page/5/">
 
 
 
@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -172,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://anynone.gitee.io/2022/04/07/qt-connect/">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2022/04/07/linux-build-sometime/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -185,7 +185,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/04/07/qt-connect/" class="post-title-link" itemprop="url">qt信号和槽函数</a>
+          <a href="/2022/04/07/linux-build-sometime/" class="post-title-link" itemprop="url">聊聊linux源码编译</a>
         </h2>
 
         <div class="post-meta-container">
@@ -217,107 +217,49 @@
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>Qt是一个跨平台的C++框架，主要用来开发GUI界面程序，也可以用来开发没有界面的命令行程序。支持功能类似Virtual studio。但是和Virtual Studio不同的是，Qt支持运行在Linux，Window，Macos等桌面系统，甚至支持在Android,IOS等移动设备运行。我比较好奇的是Qt生成的windows程序,反编译后的的汇编入口标识和Virtualbox studio是否相同，有时间会试试看。</p>
+<p>Linux，全称GNU/Linux，是一种免费使用和自由传播的类UNIX操作系统，其内核由林纳斯·本纳第克特·托瓦兹于1991年10月5日首次发布，它主要受到Minix和Unix思想的启发，是一个基于POSIX的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的Unix工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。Linux有上百种不同的发行版，如基于社区开发的debian、archlinux，和基于商业开发的Red Hat Enterprise Linux、SUSE、Oracle Linux等。</p>
 </blockquote>
-<img src="/images/qt/2022-04-07_21-42.png" alt="2022-04-07_21-42" style="zoom:75%;margin-left:0px;" />
+<p>linux通过编译构建一个软件对大部分程序猿可能比较陌生，最近构建了一个比较老版本的Docker镜像。出于某些需求，只能使用比较老的软件和系统版本。随之而来的就是各种奇怪的报错，甚至源码语法错误。当然，有时候也很难说清楚错误的具体原因。对于用过一段时间linux的用户来说，编译安装软件和windows双击运行，然后一路下一步没有太大区别。事实确实也是如此，linux编译安装一款软件一般只需要三个命令</p>
+<ul>
+<li>configure 配置构建参数</li>
+<li>make  编译</li>
+<li>make install 安装</li>
+</ul>
+<p>比较容易出现问题的是configure和make。configure阶段按照参数配置编译选项，比如安装装到哪个目录，启用什么功能和依赖是否缺失等，一般都通过这个命令配置。make命令则是实实在在的编译和连接过程。make install可以理解成就是文件复制到安装目录。幸运的是，所有软件configure时配置安装目录的参数都是<code>--prefix</code>，比如下面nginx的安装命令表示将nginx安装到/usr/local/nginx目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/nginx</span><br></pre></td></tr></table></figure>
 
-<h4 id="一、-信号和槽函数"><a href="#一、-信号和槽函数" class="headerlink" title="一、 信号和槽函数"></a>一、 信号和槽函数</h4><p>在GUI编程过程中，当修改一个界面部件时，我们经常需要调整另一个部件的行为。比如下面登录界面。</p>
-<img src="/images/qt/2022-04-07_21-55.png" alt="2022-04-07_21-55" style="zoom:75%;margin-left:0px;" />
+<p>这是编译最常用的选项了。其他选项可以使用-h或–help参数查看，比如下面nginx的部分帮助信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
 
-<p>当选择手动设置选项，那么下面对应的IP地址和端口等配置项要变为可用状态。也就是说当一个部件修改要通知下面的部件调整显示状态变为可用。使用MFC做界面开发的大佬应该比较熟悉事件和函数绑定。比如下面代码实现单击BTN1按钮调用OnBtnClick函数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ON_BN_CLICKED</span>(BTN1, OnBtnClick)</span><br></pre></td></tr></table></figure>
+<img src="/images/linux-compile/2022-04-15_00-07.png" alt="2022-04-15_00-07" style="zoom:80%;margin-left:0px;" />
 
-<p>但是，Qt并没有使用这种函数回调的方式进行函数和事件的绑定，而是采用信号和槽机制替换回调方式。信号和槽函数用于Qt对象之前的通信，是Qt核心特性。Qt中的部件（比如按钮,单选框,列表框）提供了很多预定义的信号和信号槽。信号是指Qt的界面部件被点击或选中等操作后出发的操作信息，比如上面网络代理设置界面选择手动设置选项后会触发**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlistwidget.html#itemClicked">itemClicked</a>**信号。信号槽是响应特定信号而调用的函数。Qt 的小部件有许多预定义的插槽。还是拿上面的列表举例（假如使用QListWidget实现），QListWidget包含如下槽函数<br><img src="/images/qt/2022-04-07_22-25.png" alt="2022-04-07_22-25" style="zoom:80%;margin-left:0px;" /></p>
-<h4 id="二、-连接信号和槽函数"><a href="#二、-连接信号和槽函数" class="headerlink" title="二、 连接信号和槽函数"></a>二、 连接信号和槽函数</h4><p>Qt使用connect函数实现信号和槽函数的绑定，伪代码原型如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object1发出了signal1信号， Object2对象执行他的slot1槽函数</span></span><br><span class="line"><span class="built_in">connect</span>(Object1, signal1, Object2, slot1)</span><br></pre></td></tr></table></figure>
+<p>有些源码并没有configure可执行文件，比如下面是boost的源码目录</p>
+<img src="/images/linux-compile/2022-04-15_00-10.png" alt="2022-04-15_00-10" style="zoom:100%;margin-left:0px;" />
 
-<p>当然，一般来说使用匿名函数作为槽函数更加方便，也是通常的做法</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(Object1, signal1, [=]()&#123;</span><br><span class="line">    <span class="comment">// Object1出发signal1信号后立即执行这个匿名函数</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>能看到源码中没有configure文件。这种就需要看源码目录的INSTALL或者README文件了。当然，对于编译安装很熟练的linux老手看到bootstrap.sh基本也不用看INSTALL。直接查看bootstrap.sh提供的帮助信息即可。(<u><strong>一般来说，编译前先用ls命令看文件夹里有没有绿色的可执行文件，如果类似bootstrap,config,configure等，基本就是编译配置命令，如果有Makefile文件，则可以直接make安装</strong></u>)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bootstrap.sh --help</span><br></pre></td></tr></table></figure>
 
-<p>使用信号和信号槽机制的好处是，发出信号的部件无需知道发出信号的处理函数。同样，槽函数也无需知道处理的是哪个部件发出的信号。这种松散耦合的设计保证只需要使用<code>connect</code>函数连接信号和槽函数，就可以保证一个信号的发生后对应的槽函数会被调用。并且信号和槽函数可以接受任意数量和任务类型的参数，并且完全是类型安全的。比如QLabel的槽函数setNum就是被重载的。</p>
-<img src="/images/qt/2022-04-07_22-41.png" alt="2022-04-07_22-41" style="zoom:80%;margin-left:0px;" />
 
-<p>信号也是可以重载的，但是没有找到对应的widget组件，哪天遇到了再补个图</p>
-<p>附：Qt5类文档 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/classes.html">https://doc.qt.io/qt-5/classes.html</a></p>
-<h4 id="三、-示例：点击按钮获取文本框内容"><a href="#三、-示例：点击按钮获取文本框内容" class="headerlink" title="三、 示例：点击按钮获取文本框内容"></a>三、 示例：点击按钮获取文本框内容</h4><p>开发环境如下</p>
-<table>
-<thead>
-<tr>
-<th>开发环境</th>
-<th>版本</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>系统版本</td>
-<td>linux mint 20.3, 内核版本5.4.0-107</td>
-</tr>
-<tr>
-<td>ide</td>
-<td>Qt Creator 4.14.2</td>
-</tr>
-<tr>
-<td>编译器</td>
-<td>Qmake</td>
-</tr>
-<tr>
-<td>Qt版本</td>
-<td>5.15.2</td>
-</tr>
-</tbody></table>
-<img src="/images/qt/2022-04-09_08-54.png" alt="2022-04-09_08-54" style="zoom:85%;margin-left:0px;" />
+<div style="display:flex;">
+<img src="/images/linux-compile/2022-04-15_00-17.png" alt="2022-04-15_00-17" style="zoom:75%;margin-left:0px;" /><img src="/images/linux-compile/2022-04-15_00-22.png" alt="2022-04-15_00-22" style="zoom:75%;" />
+</div>
 
-<ol>
-<li><p>新建Qwidget项目</p>
-<p>由于只是示例按钮点击获取文本内容，创建Qdialg足够用了。ui文件暂时也不用，用代码创建按钮和文本输入框。过程和代码如下：</p>
-<img src="/images/qt/2022-04-09_08-58.png" alt="2022-04-09_08-58" style="zoom:80%;margin-left:0px;" />
+<p>基于此便可以构建boost，构建命令如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./bootstrap.sh --with-libraries=program_options <span class="comment">## 仅编译program_options库</span></span><br><span class="line">./bjam install <span class="comment">## 安装</span></span><br></pre></td></tr></table></figure>
 
-<img src="/images/qt/2022-04-09_08-58_1.png" alt="2022-04-09_08-58_1" style="zoom:80%;margin-left:0px;" />
+<p>其实，configure操作并不是必须的，应为configure命令仅仅是配置编译选项，检查依赖是否完整等预处理操作，最终生成Makefile。Makefile后面再说，只需要知道是make命令需要的一个文件，有Makefile就可以使用make进行编译。比如hiredis的源码包就不需要configure。</p>
+<img src="/images/linux-compile/2022-04-15_00-33.png" alt="2022-04-15_00-33" style="zoom:100%;margin-left:0px;" />
 
-<img src="/images/qt/2022-04-09_08-59.png" alt="2022-04-09_08-59" style="zoom:80%;margin-left:0px;" />
+<p>这种安装包使用下面命令编译即可.如果想要改变编译参数则需要修改Makefile</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j 4 &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 
-<img src="/images/qt/2022-04-09_09-00.png" alt="2022-04-09_09-00" style="zoom:80%;margin-left:0px;" />
-
-<img src="/images/qt/2022-04-09_09-01.png" alt="2022-04-09_09-01" style="zoom:80%;margin-left:0px;" />
-
-<img src="/images/qt/2022-04-09_09-01_1.png" alt="2022-04-09_09-01_1" style="zoom: 80%;margin-left:0px;" /></li>
-<li><p>代码实现增加按钮和文本输入框<br>Qt界面组件也是一个C++类，所以QDialg上的组件是在构造函数总添加并加载的，对话框关闭，也就是析构函数执行时释放资源。因此，只需要在Qdialog类的构造函数增加代码即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dialog.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QPushButton&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QLineEdit&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QDebug&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QMessageBox&quot;</span></span></span><br><span class="line"></span><br><span class="line">Dialog::<span class="built_in">Dialog</span>(QWidget *parent)</span><br><span class="line">    : <span class="built_in">QDialog</span>(parent)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;<span class="built_in">setFixedSize</span>(<span class="number">400</span>, <span class="number">300</span>); <span class="comment">// 对话框400x300，不可拉伸</span></span><br><span class="line">    QPushButton *btn = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="keyword">this</span>); <span class="comment">// 新建按钮</span></span><br><span class="line">    btn-&gt;<span class="built_in">setText</span>(<span class="string">&quot;按我打印文本框内容&quot;</span>);</span><br><span class="line">    btn-&gt;<span class="built_in">setGeometry</span>(<span class="built_in">QRect</span>(<span class="number">150</span>, <span class="number">200</span>, <span class="number">150</span>, <span class="number">40</span>));</span><br><span class="line"></span><br><span class="line">    QLineEdit *text = <span class="keyword">new</span> <span class="built_in">QLineEdit</span>(<span class="keyword">this</span>);</span><br><span class="line">    text-&gt;<span class="built_in">setText</span>(<span class="string">&quot;初始内容&quot;</span>);</span><br><span class="line">    text-&gt;<span class="built_in">setGeometry</span>(<span class="built_in">QRect</span>(<span class="number">50</span>, <span class="number">50</span>, <span class="number">300</span>, <span class="number">50</span>));</span><br><span class="line">    <span class="comment">// 弹出消息框显示文本框内容</span></span><br><span class="line">    QMessageBox *messageBox = <span class="keyword">new</span> <span class="built_in">QMessageBox</span>(<span class="keyword">this</span>);</span><br><span class="line">    <span class="comment">// 按钮按下获取文本框内容并打印</span></span><br><span class="line">    <span class="built_in">connect</span>(btn, &amp;QPushButton::clicked, [=]()&#123;</span><br><span class="line">        <span class="comment">// 打印日志</span></span><br><span class="line">        <span class="built_in">qDebug</span>() &lt;&lt; text-&gt;<span class="built_in">text</span>();</span><br><span class="line"></span><br><span class="line">        messageBox-&gt;<span class="built_in">setText</span>(text-&gt;<span class="built_in">text</span>());</span><br><span class="line">        messageBox-&gt;<span class="built_in">show</span>();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dialog::~<span class="built_in">Dialog</span>()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<img src="/images/qt/2022-04-09_11-24.png" alt="2022-04-09_11-24" style="zoom:80%;margin-left:0px;" /></li>
-</ol>
-<h4 id="四、-自定义信号和槽函数"><a href="#四、-自定义信号和槽函数" class="headerlink" title="四、 自定义信号和槽函数"></a>四、 自定义信号和槽函数</h4><p>前面写过信号和槽用于Qt对象之间的通信，那么信号的定义应该是Qt对象树的最顶端的对象支撑的。事实确实也是如此，不管是QWidget还是QPushButton都是继承自QObject，这点可以类比到JAVA所有对象都继承自Object。新建一个类CustomSignalTest并继承自QObject</p>
-<img src="/images/qt/2022-04-09_11-44.png" alt="2022-04-09_11-44" style="zoom:80%;margin-left:0px;" />
-
-<p>完成后打开头文件(customsignaltest.h)，在signals块定义一个eat信号</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CUSTOMSIGNALTEST_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CUSTOMSIGNALTEST_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QObject&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomSignalTest</span> :</span> <span class="keyword">public</span> QObject</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">CustomSignalTest</span><span class="params">(QObject *parent = <span class="literal">nullptr</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>; <span class="comment">// 增加eat信号</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// CUSTOMSIGNALTEST_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>基于上面按钮点击后弹出文本框内容的例子， 当点击按钮后，发出eat信息，文本框接受到eat信号后将文本框的字体颜色改为红色。正常情况下我们不会这么做，如此击鼓传花只为演示自定义信号的使用。还是在Dialog构造函数添加代码,最终代码如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dialog.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QPushButton&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QLineEdit&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QDebug&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QMessageBox&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;customsignaltest.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">Dialog::<span class="built_in">Dialog</span>(QWidget *parent)</span><br><span class="line">    : <span class="built_in">QDialog</span>(parent)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;<span class="built_in">setFixedSize</span>(<span class="number">400</span>, <span class="number">300</span>); <span class="comment">// 对话框400x300，不可拉伸</span></span><br><span class="line">    QPushButton *btn = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="keyword">this</span>); <span class="comment">// 新建按钮</span></span><br><span class="line">    btn-&gt;<span class="built_in">setText</span>(<span class="string">&quot;按我打印文本框内容&quot;</span>);</span><br><span class="line">    btn-&gt;<span class="built_in">setGeometry</span>(<span class="built_in">QRect</span>(<span class="number">150</span>, <span class="number">200</span>, <span class="number">150</span>, <span class="number">40</span>));</span><br><span class="line"></span><br><span class="line">    QLineEdit *text = <span class="keyword">new</span> <span class="built_in">QLineEdit</span>(<span class="keyword">this</span>);</span><br><span class="line">    text-&gt;<span class="built_in">setText</span>(<span class="string">&quot;初始内容&quot;</span>);</span><br><span class="line">    text-&gt;<span class="built_in">setGeometry</span>(<span class="built_in">QRect</span>(<span class="number">50</span>, <span class="number">50</span>, <span class="number">300</span>, <span class="number">50</span>));</span><br><span class="line">    <span class="comment">// 弹出消息框显示文本框内容</span></span><br><span class="line">    QMessageBox *messageBox = <span class="keyword">new</span> <span class="built_in">QMessageBox</span>(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义信号演示类</span></span><br><span class="line">    CustomSignalTest *ct = <span class="keyword">new</span> <span class="built_in">CustomSignalTest</span>(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 按钮按下获取文本框内容并打印</span></span><br><span class="line">    <span class="built_in">connect</span>(btn, &amp;QPushButton::clicked, [=]()&#123;</span><br><span class="line">        <span class="comment">// 打印日志</span></span><br><span class="line">        <span class="built_in">qDebug</span>() &lt;&lt; text-&gt;<span class="built_in">text</span>();</span><br><span class="line"></span><br><span class="line">        messageBox-&gt;<span class="built_in">setText</span>(text-&gt;<span class="built_in">text</span>());</span><br><span class="line">        messageBox-&gt;<span class="built_in">show</span>();</span><br><span class="line">        <span class="comment">// 发送eat信号</span></span><br><span class="line">        emit ct-&gt;<span class="built_in">eat</span>();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当ct发出eat信号时，文本框变为红色</span></span><br><span class="line">    <span class="built_in">connect</span>(ct, &amp;CustomSignalTest::eat, [=]()&#123;</span><br><span class="line">        <span class="built_in">qDebug</span>()&lt;&lt; <span class="string">&quot;收到了eat信号&quot;</span>;</span><br><span class="line">        QPalette palette;</span><br><span class="line">        palette.<span class="built_in">setColor</span>(QPalette::Text, <span class="built_in">QColor</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">        text-&gt;<span class="built_in">setPalette</span>(palette);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dialog::~<span class="built_in">Dialog</span>()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<img src="/images/qt/2022-04-09_12-28.png" style="zoom:80%;margin-left:0px;" />
+<p>除了make外，还有一个很常用的编译工具是cmake。cmake是一款跨平台项目管理工具，cmake属于make的下层工具，用来生成make所需的Makefile。对于小型项目，直接上手编写Makefile是没有什么问题的。但是对于大型项目，上手直接编写Makefile不是一件简单的事情，应该考虑自动生成Makefile。大多数linux系统可以直接通过包管理工具安装cmake，使用方式也很简单。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 新建build文件夹，文件夹名称无所谓，习惯上用build。特殊编译方式参考README</span></span><br><span class="line">mkdir build &amp;&amp; pushd build</span><br><span class="line"><span class="comment">// 编译</span></span><br><span class="line">cmake ../</span><br><span class="line"><span class="comment">// 安装</span></span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="五、-信号重载"><a href="#五、-信号重载" class="headerlink" title="五、 信号重载"></a>五、 信号重载</h4><p>上面自定义信号是没有任何参数的，有些时候是需要发送信号的同时传入参数，这个时候就需要对信号进行重载，部分代码如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">// 重载eat方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">(QString footName)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>当触发了带参数的重载方法后，将发送信号时传入的字符串打印出来。增加重载方法后会发现上面的例子报错了。原因是connect无法判断应该接收哪个eat信号，所以需要声明,修改后的部分代码如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当ct发出eat信号时，文本框变为红色</span></span><br><span class="line"><span class="built_in"><span class="keyword">void</span></span> (CustomSignalTest:: *eatNoParam)() = &amp;CustomSignalTest::eat; <span class="comment">// 定义方法引用</span></span><br><span class="line"><span class="built_in">connect</span>(ct, eatNoParam, [=]()&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>()&lt;&lt; <span class="string">&quot;收到了eat信号&quot;</span>;</span><br><span class="line">    QPalette palette;</span><br><span class="line">    palette.<span class="built_in">setColor</span>(QPalette::Text, <span class="built_in">QColor</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">    text-&gt;<span class="built_in">setPalette</span>(palette);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>接收带参数的信号和无参数信号类似，首先发送信息位置增加参数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 按钮按下获取文本框内容并打印</span></span><br><span class="line"><span class="built_in">connect</span>(btn, &amp;QPushButton::clicked, [=]()&#123;</span><br><span class="line">    <span class="comment">// 打印日志</span></span><br><span class="line">    <span class="built_in">qDebug</span>() &lt;&lt; text-&gt;<span class="built_in">text</span>();</span><br><span class="line"></span><br><span class="line">    messageBox-&gt;<span class="built_in">setText</span>(text-&gt;<span class="built_in">text</span>());</span><br><span class="line">    messageBox-&gt;<span class="built_in">show</span>();</span><br><span class="line">    <span class="comment">// 发送eat信号</span></span><br><span class="line">    emit ct-&gt;<span class="built_in">eat</span>();</span><br><span class="line">    <span class="comment">// 发送带参数的信号</span></span><br><span class="line">    emit ct-&gt;<span class="built_in">eat</span>(<span class="string">&quot;我想喝鱼汤&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>接收带参数的信号，打印到终端</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义带参数的信号变量</span></span><br><span class="line"><span class="built_in"><span class="keyword">void</span></span> (CustomSignalTest:: *eatParamString)(QString) = &amp;CustomSignalTest::eat;</span><br><span class="line"><span class="built_in">connect</span>(ct, eatParamString, [=](QString content)&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>() &lt;&lt; content; <span class="comment">// 打印到终端</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<img src="/images/qt/2022-04-09_13-05.png" alt="2022-04-09_13-05" style="zoom:80%;margin-left:0px;" />
-
-
-
-<p>附：</p>
-<p>​    qt类文档： <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/classes.html">https://doc.qt.io/qt-6/classes.html</a></p>
-<p>​    qt资源下载地址： <a target="_blank" rel="noopener" href="https://download.qt.io/">https://download.qt.io/</a></p>
-
+<p><code>相关源码和文献</code></p>
+<h6 id="nginx-http-nginx-org-download-nginx-1-21-6-tar-gz"><a href="#nginx-http-nginx-org-download-nginx-1-21-6-tar-gz" class="headerlink" title="[nginx]: http://nginx.org/download/nginx-1.21.6.tar.gz"></a>[nginx]: <a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.21.6.tar.gz">http://nginx.org/download/nginx-1.21.6.tar.gz</a></h6><h6 id="百度百科-https-baike-baidu-com-item-Linux-27050-fr-aladdin"><a href="#百度百科-https-baike-baidu-com-item-Linux-27050-fr-aladdin" class="headerlink" title="[百度百科]:  https://baike.baidu.com/item/Linux/27050?fr=aladdin"></a>[百度百科]:  <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Linux/27050?fr=aladdin">https://baike.baidu.com/item/Linux/27050?fr=aladdin</a></h6>
       
     </div>
 
@@ -336,7 +278,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

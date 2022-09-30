@@ -19,17 +19,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.gitee.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="anynone">
-<meta property="og:url" content="https://anynone.gitee.io/page/17/index.html">
+<meta property="og:url" content="https://anynone.github.io/page/17/index.html">
 <meta property="og:site_name" content="anynone">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="山丘之王">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://anynone.gitee.io/page/17/">
+<link rel="canonical" href="https://anynone.github.io/page/17/">
 
 
 
@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -172,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://anynone.gitee.io/2021/09/27/iptables-always-md/">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2021/09/27/elasticsearch-install-kylin-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -185,7 +185,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/27/iptables-always-md/" class="post-title-link" itemprop="url">centos/ubuntu iptables持久生效</a>
+          <a href="/2021/09/27/elasticsearch-install-kylin-md/" class="post-title-link" itemprop="url">centos/kylin(yum)安装elasticsearch6.3.1</a>
         </h2>
 
         <div class="post-meta-container">
@@ -196,7 +196,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-09-27 22:31:29" itemprop="dateCreated datePublished" datetime="2021-09-27T22:31:29+08:00">2021-09-27</time>
+      <time title="创建时间：2021-09-27 22:32:51" itemprop="dateCreated datePublished" datetime="2021-09-27T22:32:51+08:00">2021-09-27</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -216,25 +216,74 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<h5 id="iptables规则设置完成后重启会丢失-有两种方式可以实现永久生效"><a href="#iptables规则设置完成后重启会丢失-有两种方式可以实现永久生效" class="headerlink" title="iptables规则设置完成后重启会丢失,有两种方式可以实现永久生效"></a>iptables规则设置完成后重启会丢失,有两种方式可以实现永久生效</h5><ol>
-<li>网卡启动前执行脚本,重新配置开发端口</li>
-<li>iptables-restore，iptables-save完成规则保存和重载</li>
-</ol>
-</blockquote>
-<h5 id="网卡启动配置增加iptables脚本方式"><a href="#网卡启动配置增加iptables脚本方式" class="headerlink" title="网卡启动配置增加iptables脚本方式"></a>网卡启动配置增加iptables脚本方式</h5><ul>
-<li><p>centos<br>network-scripts/etc/sysconfig/network-scripts/ifup-post 增加iptables命令即可</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;iptables -I INPUT -p tcp --dport 8080 -j ACCEPT&quot;</span> &gt;&gt; network-scripts/etc/sysconfig/network-scripts/ifup-post</span><br></pre></td></tr></table></figure></li>
-<li><p>ubuntu/debian<br>/etc/network/if-up.d/* 建立配置文件增加脚本,给执行权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;iptables -I INPUT -p tcp --dport 8080 -j ACCEPT&quot;</span> &gt; /etc/network/if-up.d/test_shell</span><br><span class="line">chmod +x /etc/network/if-up.d/test_shell</span><br></pre></td></tr></table></figure>
-<h5 id="iptables-restore-iptables-save方式"><a href="#iptables-restore-iptables-save方式" class="headerlink" title="iptables-restore, iptables-save方式"></a>iptables-restore, iptables-save方式</h5></li>
-<li><p>保存规则命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables-save &gt; /etc/iptables.save.rules</span><br></pre></td></tr></table></figure></li>
-<li><p>加载规则命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables-restore &lt; /etc/iptables.save.rules</span><br></pre></td></tr></table></figure></li>
-<li><p>规则保存和重载命令放到 <code>/etc/network/interfaces</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;pre-down iptables-save &gt; /etc/iptables.save.rules&quot;</span> <span class="comment">## 网卡关闭前保存规则</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;pre-up iptables-restore &lt; /etc/iptables.save.rules&quot;</span> <span class="comment">## 网卡启动前重载规则 </span></span><br></pre></td></tr></table></figure></li>
+          <h3 id="安装包下载-包含ik分词器"><a href="#安装包下载-包含ik分词器" class="headerlink" title="安装包下载 (包含ik分词器)"></a>安装包下载 (包含ik分词器)</h3><blockquote>
+<ul>
+<li>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/16hZCo46eHkuqW1_HMTj3Dw">https://pan.baidu.com/s/16hZCo46eHkuqW1_HMTj3Dw</a></li>
+<li>提取码: ekkr</li>
 </ul>
+</blockquote>
+<h3 id="安装路径"><a href="#安装路径" class="headerlink" title="安装路径"></a>安装路径</h3><blockquote>
+<ul>
+<li>elasticsearch ： <code>/opt/elasticsearch-6.3.1</code></li>
+<li>ip地址: <code>192.168.56.101</code></li>
+</ul>
+</blockquote>
+<h3 id="解压-建目录-创建用户-修改权限"><a href="#解压-建目录-创建用户-修改权限" class="headerlink" title="解压,建目录,创建用户,修改权限"></a>解压,建目录,创建用户,修改权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###解压到/opt</span></span><br><span class="line">sudo tar xf elasticsearch-6.3.1.tar.gz -C /opt/</span><br><span class="line"><span class="comment">###创建数据目录</span></span><br><span class="line">mkdir /opt/elasticsearch-6.3.1/data</span><br><span class="line"><span class="comment">###创建用户elastic作为执行用户，elastic默认不许用root启动</span></span><br><span class="line">useradd -M -s /bin/nologin elastic</span><br><span class="line"><span class="comment">###修改主目录权限，之后使用elastic用户启动服务</span></span><br><span class="line">chown -R elastic.elastic /opt/elasticsearch-6.3.1</span><br></pre></td></tr></table></figure>
+<h3 id="安装ik分词器"><a href="#安装ik分词器" class="headerlink" title="安装ik分词器"></a>安装ik分词器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###解压到插件目录</span></span><br><span class="line">unzip elasticsearch-analysis-ik-6.3.1.zip -d /opt/elasticsearch-6.3.1/plugins/ik</span><br></pre></td></tr></table></figure>
+
+<h3 id="改elasticsearch配置"><a href="#改elasticsearch配置" class="headerlink" title="改elasticsearch配置"></a>改elasticsearch配置</h3><ul>
+<li>配置文件: /opt/elasticsearch-6.3.1/config/elasticsearch.yml<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###修改集群名称tjzx-els</span></span><br><span class="line">sed -i <span class="string">&quot;s/#cluster.name: my-application/cluster.name: tjzx-els/g&quot;</span> elasticsearch.yml</span><br><span class="line"><span class="comment">###修改节点名称(不能重复)</span></span><br><span class="line">sed -i <span class="string">&quot;s/#node.name: node-1/node.name: node-1/g&quot;</span> elasticsearch.yml</span><br><span class="line"><span class="comment">###修改数据文件路径</span></span><br><span class="line">sed -i <span class="string">&quot;s/#path.data: \/path\/to\/data/path.data: \/opt\/elasticsearch-6.3.1\/data/g&quot;</span> elasticsearch.yml</span><br><span class="line"><span class="comment">###修改log路径</span></span><br><span class="line">sed -i <span class="string">&quot;s/#path.logs: \/path\/to\/logs/path.logs: \/opt\/elasticsearch-6.3.1\/logs/g&quot;</span> elasticsearch.yml</span><br><span class="line"><span class="comment">###启用内存锁定</span></span><br><span class="line">sed -i <span class="string">&quot;s/#bootstrap.memory_lock: true/bootstrap.memory_lock: true/g&quot;</span> elasticsearch.yml</span><br><span class="line"><span class="comment">###启用系统调用过滤器提高安全性</span></span><br><span class="line">sed -i <span class="string">&#x27;$a\bootstrap.system_call_filter:\ true&#x27;</span> elasticsearch.yml</span><br><span class="line"><span class="comment">###禁用机器学习,在linux-aarch64下不能用,其他版本再开启</span></span><br><span class="line"><span class="comment">#X-Pack is not supported and Machine Learning is not available for [linux-aarch64]</span></span><br><span class="line">sed -i <span class="string">&#x27;$a\xpack.ml.enabled:\ false&#x27;</span> elasticsearch.yml</span><br><span class="line"><span class="comment">###修改当前主机ip</span></span><br><span class="line">sed -i <span class="string">&quot;s/#network.host: 192.168.0.1/network.host: 192.168.56.101/g&quot;</span> elasticsearch.yml</span><br><span class="line"><span class="comment">###修改监听端口</span></span><br><span class="line">sed -i <span class="string">&quot;s/#http.port: 9200/http.port: 9200/g&quot;</span> elasticsearch.yml</span><br><span class="line"><span class="comment">###配置集群master可以多个,这里自己和自己组成集群</span></span><br><span class="line">sed -i <span class="string">&quot;s/#discovery.zen.ping.unicast.hosts: \[\&quot;host1\&quot;, \&quot;host2\&quot;\]/discovery.zen.ping.unicast.hosts: \[\&quot;192.168.56.101\&quot;\]/g&quot;</span> elasticsearch.yml</span><br></pre></td></tr></table></figure>
+<h3 id="修改系统配置文件"><a href="#修改系统配置文件" class="headerlink" title="修改系统配置文件"></a>修改系统配置文件</h3></li>
+<li>配置文件: /etc/security/limits.conf 增加配置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">elastic               soft    nofile          65536</span><br><span class="line">elastic               hard    nofile          65536</span><br><span class="line">elastic               hard    nproc          4096</span><br><span class="line">elastic               soft    nproc          4096</span><br><span class="line">elastic               soft    memlock          unlimited</span><br><span class="line">elastic               hard    memlock          unlimited</span><br></pre></td></tr></table></figure></li>
+<li>配置文件: /etc/sysctl.conf 增加配置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.max_map_count=655360</span><br></pre></td></tr></table></figure>
+执行<code>sysctl -p</code>并且<code>重新登陆</code>使其生效<h3 id="启动elasticsearch"><a href="#启动elasticsearch" class="headerlink" title="启动elasticsearch"></a>启动elasticsearch</h3>因为不能使用root启动，这里su到elastic用户启动服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su -s /bin/bash elastic</span><br><span class="line">/opt/elasticsearch-6.3.1/bin/elasticsearch -d</span><br></pre></td></tr></table></figure>
+<h3 id="解压kibana，测试"><a href="#解压kibana，测试" class="headerlink" title="解压kibana，测试"></a>解压kibana，测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 解压</span></span><br><span class="line">tar xf kibana-6.3.1-linux-x86_64.tar.gz</span><br><span class="line"><span class="comment">###配置els地址</span></span><br><span class="line">sed -i <span class="string">&quot;s/#elasticsearch.url: \&quot;http:\/\/localhost:9200\&quot;/elasticsearch.url: \&quot;http:\/\/192.168.56.101:9200\&quot;/g&quot;</span> kibana.yml</span><br><span class="line"><span class="comment">### 切换到bin目录， ./kibana启动</span></span><br><span class="line"><span class="comment">### 访问 http://192.168.56.101:5601 进入</span></span><br></pre></td></tr></table></figure>
+<h3 id="相关端口"><a href="#相关端口" class="headerlink" title="相关端口"></a>相关端口</h3><table>
+<thead>
+<tr>
+<th>端口</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9200</td>
+<td>elasticseach服务端口, rest接口</td>
+</tr>
+<tr>
+<td>9300</td>
+<td>elasticsearch集群通信端口</td>
+</tr>
+<tr>
+<td>5601</td>
+<td>kibana管理界面监听端口</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p><code>附加开启端口命令</code></p>
+<blockquote>
+<ul>
+<li>iptables -I INPUT -p tcp –dport 9200 -j ACCEPT</li>
+<li>iptables -I INPUT -p tcp –dport 9300 -j ACCEPT</li>
+<li>iptables -I INPUT -p tcp –dport 5601 -j ACCEPT</li>
+</ul>
+</blockquote>
+<p><code>iptables持久化可以搜索下看看，如果没有，说明还没写</code></p>
+<h3 id="systemctl-服务化"><a href="#systemctl-服务化" class="headerlink" title="systemctl 服务化"></a>systemctl 服务化</h3><p><code>这是service文件，复制到相应系统目录</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Elasticsearch</span><br><span class="line">Documentation=http://www.elastic.co</span><br><span class="line">Wants=network-online.target</span><br><span class="line">After=network-online.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Environment=ES_HOME=/opt/elasticsearch-6.3.1</span><br><span class="line">Environment=ES_PATH_CONF=/opt/elasticsearch-6.3.1/config</span><br><span class="line">Environment=PID_DIR=/opt/elasticsearch-6.3.1</span><br><span class="line"></span><br><span class="line">PIDFile=/opt/elasticsearch-6.3.1/elasticsearch.pid</span><br><span class="line">ExecStartPre=/bin/chown -R elastic.elastic /opt/elasticsearch-6.3.1/</span><br><span class="line">WorkingDirectory=/opt/elasticsearch-6.3.1</span><br><span class="line">User=elastic</span><br><span class="line">ExecStart=/opt/elasticsearch-6.3.1/bin/elasticsearch -p /opt/elasticsearch-6.3.1/elasticsearch.pid</span><br><span class="line">LimitNOFILE=100000</span><br><span class="line">LimitNPROC=100000</span><br><span class="line">LimitMEMLOCK=infinity</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<h3 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h3><ol>
+<li><p>新建用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -M -s /bin/nologin elastic</span><br></pre></td></tr></table></figure></li>
+<li><p>修改打开文件和进程数内存锁定大小等 /etc/security/limits.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#执行 ulimit -Sn 查看打开文件数 太小 增加配置如下</span></span><br><span class="line">elastic            soft    nofile          65536</span><br><span class="line"><span class="comment">#执行 ulimit -Hn 查看打开文件数 太小 增加唉配置如下</span></span><br><span class="line">elastic              hard    nofile          65536</span><br><span class="line"><span class="comment">#执行 ulimit -Hu 查看同时打开进程数 太小 增加唉配置如下</span></span><br><span class="line">elastic              hard    nproc          4096</span><br><span class="line"><span class="comment">#执行 ulimit -Su 查看同时打开进程数 太小 增加唉配置如下</span></span><br><span class="line">elastic               soft    nproc          4096</span><br><span class="line"><span class="comment">#执行 ulimit -Sl 查看最大锁定内存数 这是kb， 按照相应机器内存设置，这里设置为不限制</span></span><br><span class="line">elastic               soft    memlock          unlimited</span><br><span class="line">elastic               hard    memlock          unlimited</span><br></pre></td></tr></table></figure></li>
+<li><p>修改申请的内存权限大小  /etc/sysctl.conf增加配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.max_map_count=655360</span><br></pre></td></tr></table></figure></li>
+<li><p>新建配置/etc/sysconfig/elasticsearch</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ES_JAVA_OPTS=<span class="string">&quot;-Xms4g -Xmx4g&quot;</span> </span><br><span class="line">MAX_LOCKED_MEMORY=unlimited</span><br></pre></td></tr></table></figure></li>
+<li><p><code>systemctl start elasticsearch</code> 启动即可</p>
+</li>
+</ol>
 
       
     </div>
@@ -254,7 +303,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>

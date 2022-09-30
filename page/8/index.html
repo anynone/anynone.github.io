@@ -19,17 +19,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.gitee.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="anynone">
-<meta property="og:url" content="https://anynone.gitee.io/page/8/index.html">
+<meta property="og:url" content="https://anynone.github.io/page/8/index.html">
 <meta property="og:site_name" content="anynone">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="山丘之王">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://anynone.gitee.io/page/8/">
+<link rel="canonical" href="https://anynone.github.io/page/8/">
 
 
 
@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -172,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://anynone.gitee.io/2022/01/01/docker-reject-bind-port/">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2022/03/31/linux-ununual-command/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -185,7 +185,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/01/01/docker-reject-bind-port/" class="post-title-link" itemprop="url">禁用docker开放的端口</a>
+          <a href="/2022/03/31/linux-ununual-command/" class="post-title-link" itemprop="url">linux常用命令----mount和umount设备挂载</a>
         </h2>
 
         <div class="post-meta-container">
@@ -196,7 +196,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-01-01 03:21:37" itemprop="dateCreated datePublished" datetime="2022-01-01T03:21:37+08:00">2022-01-01</time>
+      <time title="创建时间：2022-03-31 22:19:40" itemprop="dateCreated datePublished" datetime="2022-03-31T22:19:40+08:00">2022-03-31</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -216,47 +216,92 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>之前遇到了docker绑定本地端口后通过iptables INPUT 链无法禁用绑定端口访问的问题，刚好深夜醒了睡不着，写篇日志助眠</p>
-<p>顺便说下，我的局域网ip是 <code>192.168.31.105</code></p>
+          <blockquote>
+<p>mount用来挂载, umount用来卸载。拔出U盘，弹出光盘前记得umount。这个世界，存在一个事物就有其合理性</p>
+</blockquote>
+<p><font color="blue">mount </font>  [-t 文件系统] [-L 卷标名] [-o 其他选项] 设备文件名称 挂载点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 例如</span></span><br><span class="line">mount -t ntfs /dev/sdb1 /mnt/sdb1</span><br></pre></td></tr></table></figure>
+
+<p>  常见分区类型有ext,fat,ntfs. 对应驱动以模块形式放入硬盘。保存在<code>/lib/modules/内核版本号/kernel</code>中，分区类型驱动在fs目录中。比如我目前的系统是mint,分区驱动对应目录为<code>/lib/modules/5.4.0-100-generic/kernel/fs/</code>，如下</p>
+<img src="/images/linux-common-command/2022-03-31_22-46.png" alt="2022-03-31_22-46" style="zoom:100%;margin-left:0px;" />
+
+<p>可以看到，mint系统已经包含常见的fat，ntfs等驱动。如果当前系统不包含想要挂载的分区类型驱动，则可能需要重新编译内核。有些文件系统比如ntfs，也可以找三方解决方案，比如安装ntfs-3g来支持ntfs磁盘的挂载。</p>
 <ol>
-<li>临时创建nginx端口映射，建立容器，绑定本地端口80</li>
+<li>光盘挂载 (<code>/dev/cdrom</code> 或 <code>/dev/sr0</code>)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 只读盘挂载</span><br><span class="line">mount -t iso9660 /dev/sr0 /mnt/cdrom</span><br></pre></td></tr></table></figure></li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run --rm -p 8081:80  -it nginx</span><br></pre></td></tr></table></figure>
-
-<p><span style="color:red;">试下访问本机8081端口尝试是可以通的</span><br><img src="/images/docker-reject-port/1.jpg" alt="1" style="zoom:67%;margin-left:0px;" /></p>
+<ul>
+<li>/dev/cdrom是/dev/sr0的软链接，建议直接使用/dev/sr0挂载光盘。</li>
+<li>如果光盘没有umount掉，光盘是无法弹出的，切记切记</li>
+<li>使用空目录作为挂载点</li>
+</ul>
 <ol start="2">
-<li>REJECT掉INPUT链的8081端口访问</li>
+<li><p>移动硬盘挂载(/dev/sd*)</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount -t vfat -o iocharset=utf8 U盘设备文件名 挂载点 </span><br></pre></td></tr></table></figure>
+<p>U盘和硬盘公用设备文件名，所以U盘文件名并不是固定的。磁盘的文件名使用<font color=red>sd</font>开头，比如<font color=red>sda,sdb,sdc</font>等。所以挂载磁盘前，需要查询当前磁盘列表：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看磁盘列表，可以看到目前连接了2块内置的固态和一块移动硬盘，移动硬盘设备名称是/dev/sda1</span></span><br><span class="line">fdisk -l</span><br><span class="line"><span class="comment"># 因此对应移动磁盘挂载命令为</span></span><br><span class="line">mount -t vfat -o iocharset=utf8 /dev/sda1 /mnt/upan</span><br></pre></td></tr></table></figure>
+
+<img src="/images/linux-common-command/2.png" alt="2" style="margin-left:0px;" /></li>
+<li><p>固定挂载硬盘<br> mount -t命令挂载的磁盘在服务器重启后会丢失，如果是新增加的服务器硬盘则需要持久挂载。固定挂载硬盘的正确操作方式是编辑/etc/fstab文件，使用<font color=red>mount -a</font>命令挂载。大多数人习惯性的使用mount命令直接挂载磁盘。也是很多刚刚接触linux小白经常把系统搞崩溃的点。linux系统启动过程会读取fstab配置，如果fstab配置文件有问题，会由于系统无法挂载磁盘导致系统无法进入。当然，修复就是另外的内容了。需要注意的是，<font color=red>mount -a</font>仅仅挂载/etc/fstab配置文件记录的磁盘中没有被挂载的磁盘。也就意味着，如果新的磁盘已经使用mount -t 命令挂载完成，那么mount -a 命令不会重新挂载，也就不会报错。mount -a 检查新的磁盘配置是否正确时，必须先卸载磁盘后再做。<font color=red>对于固定磁盘的挂载，使用mount -a命令读取/etc/fstab配置来挂载磁盘，不要手动mount -t 挂载磁盘</font></p>
+<blockquote>
+<p>/etc/fstab文件配置 说明</p>
+</blockquote>
+ <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;file system&gt; &lt;mount point&gt;   &lt;type&gt;    &lt;options&gt;         &lt;dump&gt;  &lt;pass&gt;</span><br><span class="line">磁盘文件名      挂载点           驱动名称     选项            是否备份   开机是否fsck磁盘</span><br><span class="line">/dev/sda       /opt            ext4     default             0        0 </span><br></pre></td></tr></table></figure></li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp --dport 8081 -j REJECT</span><br></pre></td></tr></table></figure>
-
-<p><span style="color:red;">再次试下访问本机8081端口，<span style="color:green;">还是可以通的</span></span></p>
-<img src="/images/docker-reject-port/what.gif" alt="what" style="zoom:80%;margin-left:0px;" />
-
-<p>问题如上！！！！！！！</p>
-<p>解决方式也很简单，只需要RETURN掉 DOCKER链的对应端口请求，命令如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -I DOCKER &lt;要RETURN掉的行号&gt; ! -i &lt;DOCKER网卡名称&gt; -p tcp -m tcp --dport &lt;宿主机端口号&gt; -j RETURN</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>查询行号和网卡名称</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -nvL DOCKER --line-number</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/docker-reject-port/2.jpg" alt="2"></p>
-<blockquote>
-<p>对应RETURN DOCKER链的规则</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -I DOCKER 2 ! -i docker0 -p tcp -m tcp --dport 8081 -j RETURN</span><br></pre></td></tr></table></figure>
-
-<p>RETURN后进入INPUT链，由于之前INPUT 链禁用了8081端口，请求被丢弃</p>
-<img src="/images/docker-reject-port/3.jpg" alt="3" style="zoom:67%;margin-left:0px;" />
-
-
-
-<p>到此，问题解决了，其实倒也不是什么疑难问题，主要是一般请求都会走INPUT链，通过INPUT链禁用本机端口习惯了。而安装docker后，docker容器的请求在prerouting阶段转发到DOCKER链，之后转发到容器ip。如下图，docker容器启动后必然会在iptables增加如下规则：</p>
-<img src="/images/docker-reject-port/4.jpg" alt="4" style="zoom:80%;margin-left:0px;" />
-
-<p>请求被转发到DOCKER链，之后转发到容器ip，根本没走IPNUT链</p>
-<img src="/images/docker-reject-port/5.jpg" alt="5" style="zoom:150%;margin-left:0px;" />
+<p>​        磁盘文件名、挂载点、驱动名称和mount -t 命令手动挂载意义相同，这里不再赘述。</p>
+<p>​        options(选项)意义如下表，大部分情况无需修改,一般写default即可：<br>​        </p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>atime/noatime</td>
+<td>更新访问时间/不更新访问时间。访问分区文件时，是否更新文件的访问时间，默认为更新</td>
+</tr>
+<tr>
+<td>async/sync</td>
+<td>异步/同步, 默认是异步</td>
+</tr>
+<tr>
+<td>auto/noauto</td>
+<td>自动/手动，mount -a 命令执行时是否自动挂载当前磁盘</td>
+</tr>
+<tr>
+<td>exec/noexec</td>
+<td>执行/不执行,设定是否允许文件系统中执行可执行文件，默认是exec</td>
+</tr>
+<tr>
+<td>remount</td>
+<td>重新挂载已经挂载的文件系统</td>
+</tr>
+<tr>
+<td>rw/ro</td>
+<td>读写/只读，文件系统挂载时是否具有读写权限，默认是rw</td>
+</tr>
+<tr>
+<td>suid/nosuid</td>
+<td>具有/不具有SUID权限，默认具有</td>
+</tr>
+<tr>
+<td>user/nouser</td>
+<td>运行/不允许普通用户挂载，默认是不允许，只有root可以挂载分区</td>
+</tr>
+<tr>
+<td>usrquota</td>
+<td>写入代表文件系统支持用户磁盘配额，默认不支持</td>
+</tr>
+<tr>
+<td>grpquota</td>
+<td>写入代表文件系统支持组磁盘配额，默认不支持</td>
+</tr>
+<tr>
+<td>default</td>
+<td>同事具有rw,suid,dev,exec,auto,nouser,async等默认参数的设置</td>
+</tr>
+</tbody></table>
+<p>dump和fsck如果不理解，新磁盘默认给0即可</p>
 
       
     </div>
@@ -276,7 +321,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
