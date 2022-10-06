@@ -19,29 +19,29 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.gitee.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="mount用来挂载, umount用来卸载。拔出U盘，弹出光盘前记得umount。这个世界，存在一个事物就有其合理性  mount   [-t 文件系统] [-L 卷标名] [-o 其他选项] 设备文件名称 挂载点 12# 例如mount -t ntfs &#x2F;dev&#x2F;sdb1 &#x2F;mnt&#x2F;sdb1    常见分区类型有ext,fat,ntfs. 对应驱动以模块形式放入硬盘。保存在&#x2F;lib&#x2F;modul">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux常用命令----mount和umount设备挂载">
-<meta property="og:url" content="https://anynone.github.io/2022/03/31/linux-ununual-command/index.html">
+<meta property="og:url" content="https://anynone.gitee.io/2022/03/31/linux-ununual-command/index.html">
 <meta property="og:site_name" content="anynone">
 <meta property="og:description" content="mount用来挂载, umount用来卸载。拔出U盘，弹出光盘前记得umount。这个世界，存在一个事物就有其合理性  mount   [-t 文件系统] [-L 卷标名] [-o 其他选项] 设备文件名称 挂载点 12# 例如mount -t ntfs &#x2F;dev&#x2F;sdb1 &#x2F;mnt&#x2F;sdb1    常见分区类型有ext,fat,ntfs. 对应驱动以模块形式放入硬盘。保存在&#x2F;lib&#x2F;modul">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://anynone.github.io/images/linux-common-command/2022-03-31_22-46.png">
-<meta property="og:image" content="https://anynone.github.io/images/linux-common-command/2.png">
+<meta property="og:image" content="https://anynone.gitee.io/images/linux-common-command/2022-03-31_22-46.png">
+<meta property="og:image" content="https://anynone.gitee.io/images/linux-common-command/2.png">
 <meta property="article:published_time" content="2022-03-31T14:19:40.000Z">
 <meta property="article:modified_time" content="2022-09-09T00:09:56.415Z">
 <meta property="article:author" content="山丘之王">
 <meta property="article:tag" content="git,hook,pre-commit">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://anynone.github.io/images/linux-common-command/2022-03-31_22-46.png">
+<meta name="twitter:image" content="https://anynone.gitee.io/images/linux-common-command/2022-03-31_22-46.png">
 
 
-<link rel="canonical" href="https://anynone.github.io/2022/03/31/linux-ununual-command/">
+<link rel="canonical" href="https://anynone.gitee.io/2022/03/31/linux-ununual-command/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://anynone.github.io/2022/03/31/linux-ununual-command/","path":"2022/03/31/linux-ununual-command/","title":"linux常用命令----mount和umount设备挂载"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://anynone.gitee.io/2022/03/31/linux-ununual-command/","path":"2022/03/31/linux-ununual-command/","title":"linux常用命令----mount和umount设备挂载"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>linux常用命令----mount和umount设备挂载 | anynone</title>
@@ -181,7 +181,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2022/03/31/linux-ununual-command/">
+    <link itemprop="mainEntityOfPage" href="https://anynone.gitee.io/2022/03/31/linux-ununual-command/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

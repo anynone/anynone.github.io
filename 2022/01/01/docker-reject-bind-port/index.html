@@ -19,33 +19,33 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.gitee.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="之前遇到了docker绑定本地端口后通过iptables INPUT 链无法禁用绑定端口访问的问题，刚好深夜醒了睡不着，写篇日志助眠 顺便说下，我的局域网ip是 192.168.31.105  临时创建nginx端口映射，建立容器，绑定本地端口80  1sudo docker run --rm -p 8081:80  -it nginx  试下访问本机8081端口尝试是可以通的  REJECT掉I">
 <meta property="og:type" content="article">
 <meta property="og:title" content="禁用docker开放的端口">
-<meta property="og:url" content="https://anynone.github.io/2022/01/01/docker-reject-bind-port/index.html">
+<meta property="og:url" content="https://anynone.gitee.io/2022/01/01/docker-reject-bind-port/index.html">
 <meta property="og:site_name" content="anynone">
 <meta property="og:description" content="之前遇到了docker绑定本地端口后通过iptables INPUT 链无法禁用绑定端口访问的问题，刚好深夜醒了睡不着，写篇日志助眠 顺便说下，我的局域网ip是 192.168.31.105  临时创建nginx端口映射，建立容器，绑定本地端口80  1sudo docker run --rm -p 8081:80  -it nginx  试下访问本机8081端口尝试是可以通的  REJECT掉I">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://anynone.github.io/images/docker-reject-port/1.jpg">
-<meta property="og:image" content="https://anynone.github.io/images/docker-reject-port/what.gif">
-<meta property="og:image" content="https://anynone.github.io/images/docker-reject-port/2.jpg">
-<meta property="og:image" content="https://anynone.github.io/images/docker-reject-port/3.jpg">
-<meta property="og:image" content="https://anynone.github.io/images/docker-reject-port/4.jpg">
-<meta property="og:image" content="https://anynone.github.io/images/docker-reject-port/5.jpg">
+<meta property="og:image" content="https://anynone.gitee.io/images/docker-reject-port/1.jpg">
+<meta property="og:image" content="https://anynone.gitee.io/images/docker-reject-port/what.gif">
+<meta property="og:image" content="https://anynone.gitee.io/images/docker-reject-port/2.jpg">
+<meta property="og:image" content="https://anynone.gitee.io/images/docker-reject-port/3.jpg">
+<meta property="og:image" content="https://anynone.gitee.io/images/docker-reject-port/4.jpg">
+<meta property="og:image" content="https://anynone.gitee.io/images/docker-reject-port/5.jpg">
 <meta property="article:published_time" content="2021-12-31T19:21:37.000Z">
 <meta property="article:modified_time" content="2022-09-09T00:09:56.415Z">
 <meta property="article:author" content="山丘之王">
 <meta property="article:tag" content="docker端口禁用,iptables">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://anynone.github.io/images/docker-reject-port/1.jpg">
+<meta name="twitter:image" content="https://anynone.gitee.io/images/docker-reject-port/1.jpg">
 
 
-<link rel="canonical" href="https://anynone.github.io/2022/01/01/docker-reject-bind-port/">
+<link rel="canonical" href="https://anynone.gitee.io/2022/01/01/docker-reject-bind-port/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://anynone.github.io/2022/01/01/docker-reject-bind-port/","path":"2022/01/01/docker-reject-bind-port/","title":"禁用docker开放的端口"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://anynone.gitee.io/2022/01/01/docker-reject-bind-port/","path":"2022/01/01/docker-reject-bind-port/","title":"禁用docker开放的端口"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>禁用docker开放的端口 | anynone</title>
@@ -185,7 +185,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2022/01/01/docker-reject-bind-port/">
+    <link itemprop="mainEntityOfPage" href="https://anynone.gitee.io/2022/01/01/docker-reject-bind-port/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
