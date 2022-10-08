@@ -19,28 +19,28 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.gitee.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta name="description" content="gin框架目前应该是go web开发用的最多的一款框架，目前已经有60k星。趁着今天请假，从头搭建个gin项目mvc骨架。  新建项目，按照充血模型新建gin框架开发骨架,按照开发习惯建立些空的文件    bin目录: main函数位置,以及后续可能的可执行文件源代码  config目录: 配置文件已经配置加载代码  controller: 控制器目录  model: 模型目录,包含dao和对应的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gin框架环境搭建">
-<meta property="og:url" content="https://anynone.gitee.io/2022/07/12/gin-frame-init/index.html">
+<meta property="og:url" content="https://anynone.github.io/2022/07/12/gin-frame-init/index.html">
 <meta property="og:site_name" content="anynone">
 <meta property="og:description" content="gin框架目前应该是go web开发用的最多的一款框架，目前已经有60k星。趁着今天请假，从头搭建个gin项目mvc骨架。  新建项目，按照充血模型新建gin框架开发骨架,按照开发习惯建立些空的文件    bin目录: main函数位置,以及后续可能的可执行文件源代码  config目录: 配置文件已经配置加载代码  controller: 控制器目录  model: 模型目录,包含dao和对应的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://anynone.gitee.io/images/gin-frame-init/1.jpg">
+<meta property="og:image" content="https://anynone.github.io/images/gin-frame-init/1.jpg">
 <meta property="article:published_time" content="2022-07-12T03:07:40.000Z">
 <meta property="article:modified_time" content="2022-09-09T15:39:18.798Z">
 <meta property="article:author" content="山丘之王">
 <meta property="article:tag" content="gin">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://anynone.gitee.io/images/gin-frame-init/1.jpg">
+<meta name="twitter:image" content="https://anynone.github.io/images/gin-frame-init/1.jpg">
 
 
-<link rel="canonical" href="https://anynone.gitee.io/2022/07/12/gin-frame-init/">
+<link rel="canonical" href="https://anynone.github.io/2022/07/12/gin-frame-init/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://anynone.gitee.io/2022/07/12/gin-frame-init/","path":"2022/07/12/gin-frame-init/","title":"gin框架环境搭建"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://anynone.github.io/2022/07/12/gin-frame-init/","path":"2022/07/12/gin-frame-init/","title":"gin框架环境搭建"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>gin框架环境搭建 | anynone</title>
@@ -180,7 +180,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://anynone.gitee.io/2022/07/12/gin-frame-init/">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2022/07/12/gin-frame-init/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -298,8 +298,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/09/09/linux-qt5-inputcontext/" rel="next" title="mint linux解决qtcreator无法输入中文问题">
-                  mint linux解决qtcreator无法输入中文问题 <i class="fa fa-chevron-right"></i>
+                <a href="/2022/09/29/20220420-gdb/" rel="next" title="gdb常用操作">
+                  gdb常用操作 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

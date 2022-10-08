@@ -19,17 +19,17 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.gitee.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="anynone">
-<meta property="og:url" content="https://anynone.gitee.io/index.html">
+<meta property="og:url" content="https://anynone.github.io/index.html">
 <meta property="og:site_name" content="anynone">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="山丘之王">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://anynone.gitee.io/">
+<link rel="canonical" href="https://anynone.github.io/">
 
 
 
@@ -172,7 +172,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://anynone.gitee.io/2022/09/29/20220420-gdb/">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2022/09/30/linux-qt5-inputcontext/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -185,7 +185,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/29/20220420-gdb/" class="post-title-link" itemprop="url">gdb常用操作</a>
+          <a href="/2022/09/30/linux-qt5-inputcontext/" class="post-title-link" itemprop="url">mint linux解决qtcreator无法输入中文问题</a>
         </h2>
 
         <div class="post-meta-container">
@@ -196,14 +196,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-09-29 23:11:21" itemprop="dateCreated datePublished" datetime="2022-09-29T23:11:21+08:00">2022-09-29</time>
+      <time title="创建时间：2022-09-30 22:21:37" itemprop="dateCreated datePublished" datetime="2022-09-30T22:21:37+08:00">2022-09-30</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-09-30 18:59:36" itemprop="dateModified" datetime="2022-09-30T18:59:36+08:00">2022-09-30</time>
+        <time title="修改时间：2022-10-08 19:50:39" itemprop="dateModified" datetime="2022-10-08T19:50:39+08:00">2022-10-08</time>
       </span>
 
   
@@ -216,72 +216,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>查看core文件是否生成，返回0表示不生成，一般是unlimited不显示core文件大小，设置过小可能会截断core文件，调试时会报错</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -c</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>开启core文件生成</p>
-</blockquote>
-<ul>
-<li>临时生效</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ulimit</span> -c unlimited   // 当前启动进程生效,临时生效</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>永久生效（不建议，或者第一个参数指定为具体执行用户）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 编辑  /etc/security/limits.conf</span></span><br><span class="line"><span class="comment">###### 所有进程生效的写法,不建议</span></span><br><span class="line"><span class="comment">#* soft core unlimited</span></span><br><span class="line"><span class="comment">#* hard core unlimited</span></span><br><span class="line"><span class="comment">##### 指定www-data用户执行的进程不限值core文件大小</span></span><br><span class="line">www-data soft core unlimited</span><br><span class="line">www-data hard core unlimited</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>gdb加载core文件</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gdb 可执行文件  core文件</span></span><br><span class="line"><span class="comment"># 例子： gdb php-fpm core.1234</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>gdb命令</p>
-</blockquote>
-<ol>
-<li><p>查看函数堆栈</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) bt 或者 <span class="built_in">where</span></span><br></pre></td></tr></table></figure></li>
-<li><p>跳到第bt的第N帧</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f N</span><br></pre></td></tr></table></figure></li>
-<li><p>列出源码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list 或者 l</span><br></pre></td></tr></table></figure></li>
-<li><p>重复上一次命令—回车</p>
+          <h5 id="1-安装中文输入法"><a href="#1-安装中文输入法" class="headerlink" title="1. 安装中文输入法"></a>1. 安装中文输入法</h5><ul>
+<li><p>打开设置，找到语言设置，将配置改为中文，安装好中文语言包，并应用到整个系统</p>
+<img src="/images/qt-creator-inputcontext/1.png" alt="1" style="zoom:80%;" /></li>
+<li><p>打开设置，找到输入法配置，选择简体中文，安装语言包并将输入法框架改为fcitx</p>
+<img src="/images/qt-creator-inputcontext/2.png" alt="2" style="zoom:80%;" /></li>
+<li><p>安装搜狗输入法<br>下载地址： <a target="_blank" rel="noopener" href="https://shurufa.sogou.com/linux">https://shurufa.sogou.com/linux</a><br>下载好deb文件，双击或者dpkg安装即可，之后重启</p>
 </li>
-<li><p>设置断点，在源程序第N行处 : break/b</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb)<span class="built_in">break</span> 12</span><br></pre></td></tr></table></figure></li>
-<li><p>设置断点，在函数func()入口处</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> fun</span><br></pre></td></tr></table></figure></li>
-<li><p>查看断点信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) info <span class="built_in">break</span></span><br></pre></td></tr></table></figure></li>
-<li><p>根据GDB分配给断点的标识符@1、@2…等等来删除</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) delete 12</span><br></pre></td></tr></table></figure></li>
-<li><p>运行程序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) run</span><br></pre></td></tr></table></figure></li>
-<li><p>单步执行 next/n</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) next</span><br></pre></td></tr></table></figure></li>
-<li><p>继续运行程序 continue</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">continue</span></span><br></pre></td></tr></table></figure></li>
-<li><p>打印变量i的值 print/p</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">print</span> i</span><br></pre></td></tr></table></figure></li>
-<li><p>打印vector变量前两个元素</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) p *(v._M_impl._M_start)@2</span><br></pre></td></tr></table></figure></li>
-<li><p>打印array第60～69的元素</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) p array[60]@10</span><br></pre></td></tr></table></figure></li>
-<li><p>打印a的成员b</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) p a.b</span><br></pre></td></tr></table></figure></li>
-<li><p>打印a的类型</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) whatis a</span><br></pre></td></tr></table></figure></li>
-<li><p>打印a类型的结构</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) ptype a</span><br></pre></td></tr></table></figure></li>
-<li><p>退出函数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) finish</span><br></pre></td></tr></table></figure></li>
-<li><p>退出gdb quit / q</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) quit</span><br></pre></td></tr></table></figure></li>
-</ol>
+<li><p>复制libfcitxplatforminputcontextplugin.so到qtcreator安装目录插件文件夹(我的qt版本是5.14.2)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装fcitx-frontend-qt5</span></span><br><span class="line">sudo apt-get install fcitx-frontend-qt5</span><br><span class="line"><span class="comment"># 复制so文件到qtcreator插件目录</span></span><br><span class="line">cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so [Qt安装目录]/5.14.2/gcc_64/plugins/platforminputcontexts/</span><br><span class="line">cp /usr/lib/x86_64-linux-gnu/qt5/plugins/platforminputcontexts/libfcitxplatforminputcontextplugin.so [Qt安装目录]/Tools/QtCreator/lib/Qt/plugins/platforminputcontexts/</span><br></pre></td></tr></table></figure></li>
+<li><p>重启qtcreator，尝试输入中文</p>
+</li>
+</ul>
+<h5 id="2-编译fcitx-qt5"><a href="#2-编译fcitx-qt5" class="headerlink" title="2. 编译fcitx-qt5"></a>2. 编译fcitx-qt5</h5><p>如果经过第一步可以输入中文，恭喜你，你很幸运。但是，大多数情况是还是无法输入中文。因为高版本qtcreator无法识别系统更新源中提供的低版本libfcitxplatforminputcontextplugin.so。这个时候需要自己编译fcitx-qt5.</p>
+<ul>
+<li>首先看下编译qtcreator的qt版本，我这里有qt5和qt6两个版本编译的qtcreator，所以，两个版本我都编译。cmake和gcc我使用qt6包里的，其实版本不要太低就行<img src="/images/qt-creator-inputcontext/5.png" alt="5" style="zoom:75%;margin-left:0px;" /></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 克隆最新代码</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/fcitx/fcitx-qt5.git</span><br><span class="line"><span class="comment">## 安装好gcc, g++,make, cmake 以备不时之需</span></span><br><span class="line">sudo apt-get install gcc g++ make cmake</span><br><span class="line"><span class="comment">## 把qtcreator gcc加入到PATH,具体到qtcreator安装目录找</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/mick/ide/qtcreator/6.3.2/gcc_64/bin/:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/mick/ide/qtcreator/Tools/CMake/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="comment">## 进入fcitx-qt5项目目录，新建build文件夹开始编译</span></span><br><span class="line">mkdir build &amp;&amp; <span class="built_in">cd</span> build</span><br><span class="line"><span class="comment">### -DQt6_DIR QT6 cmakelist文件夹， -DQt5_DIR QT5 cmakelist文件夹</span></span><br><span class="line">cmake -DENABLE_LIBRARY=<span class="literal">false</span> -DQt6_DIR=/home/mick/ide/qtcreator/6.3.2/gcc_64/lib/cmake/Qt6/ -DQt5_DIR=/home/mick/ide/qtcreator/5.15.2/gcc_64/lib/cmake/Qt5 ../</span><br></pre></td></tr></table></figure>
+
+<img style="margin-left:0px;" src="/images/qt-creator-inputcontext/3.png" alt="3" style="zoom:100%;" />
+
+<h5 id="复制编译好的so文件到qtcreator插件目录并重启qtcreator，就像第一步的时候那样"><a href="#复制编译好的so文件到qtcreator插件目录并重启qtcreator，就像第一步的时候那样" class="headerlink" title="复制编译好的so文件到qtcreator插件目录并重启qtcreator，就像第一步的时候那样"></a>复制编译好的so文件到qtcreator插件目录并重启qtcreator，就像第一步的时候那样</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制so文件到qtcreator插件目录</span></span><br><span class="line">cp ./qt5/platforminputcontext/libfcitxplatforminputcontextplugin.so [Qt安装目录]/5.14.2/gcc_64/plugins/platforminputcontexts/</span><br><span class="line">cp ./qt5/platforminputcontext/libfcitxplatforminputcontextplugin.so [Qt安装目录]/Tools/QtCreator/lib/Qt/plugins/platforminputcontexts/</span><br><span class="line"><span class="comment">## 还有qt6编译的qtcreator</span></span><br><span class="line">cp libfcitxplatforminputcontextplugin-qt6.so [Qt安装目录]/6.3.2/gcc_64/plugins/platforminputcontexts/</span><br><span class="line">cp libfcitxplatforminputcontextplugin-qt6.so [Qt安装目录]/Tools/QtCreator/lib/Qt/plugins/platforminputcontexts/</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-好了，一切准备就绪"><a href="#3-好了，一切准备就绪" class="headerlink" title="3. 好了，一切准备就绪"></a>3. 好了，一切准备就绪</h5><img style="margin-left:0px;" src="/images/qt-creator-inputcontext/4.png" alt="3" style="zoom:100%;" />
+
+<img src="/images/qt-creator-inputcontext/6.png" style="zoom:80%;margin-left:0px;" />
 
       
     </div>
