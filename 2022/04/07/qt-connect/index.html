@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Qt是一个跨平台的C++框架，主要用来开发GUI界面程序，也可以用来开发没有界面的命令行程序。支持功能类似Virtual studio。但是和Virtual Studio不同的是，Qt支持运行在Linux，Window，Macos等桌面系统，甚至支持在Android,IOS等移动设备运行。我比较好奇的是Qt生成的windows程序,反编译后的的汇编入口标识和Virtualbox studio是否">
+<meta property="og:type" content="article">
+<meta property="og:title" content="qt信号和槽函数">
+<meta property="og:url" content="https://anynone.github.io/2022/04/07/qt-connect/index.html">
+<meta property="og:site_name" content="anynone">
+<meta property="og:description" content="Qt是一个跨平台的C++框架，主要用来开发GUI界面程序，也可以用来开发没有界面的命令行程序。支持功能类似Virtual studio。但是和Virtual Studio不同的是，Qt支持运行在Linux，Window，Macos等桌面系统，甚至支持在Android,IOS等移动设备运行。我比较好奇的是Qt生成的windows程序,反编译后的的汇编入口标识和Virtualbox studio是否">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-07_21-42.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-07_21-55.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-07_22-25.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-07_22-41.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_08-54.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_08-58.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_08-58_1.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_08-59.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_09-00.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_09-01.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_09-01_1.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_11-24.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_11-44.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_12-28.png">
+<meta property="og:image" content="https://anynone.github.io/images/qt/2022-04-09_13-05.png">
+<meta property="article:published_time" content="2022-04-07T15:01:20.000Z">
+<meta property="article:modified_time" content="2024-12-13T18:30:47.333Z">
+<meta property="article:author" content="山丘之王">
+<meta property="article:tag" content="qt,connect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://anynone.github.io/images/qt/2022-04-07_21-42.png">
+
+
+<link rel="canonical" href="https://anynone.github.io/2022/04/07/qt-connect/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://anynone.github.io/2022/04/07/qt-connect/","path":"2022/04/07/qt-connect/","title":"qt信号和槽函数"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>qt信号和槽函数 | anynone</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">anynone</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <img src="/images/head.jpg">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81-%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">一、 信号和槽函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81-%E8%BF%9E%E6%8E%A5%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">二、 连接信号和槽函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E8%8E%B7%E5%8F%96%E6%96%87%E6%9C%AC%E6%A1%86%E5%86%85%E5%AE%B9"><span class="nav-number">3.</span> <span class="nav-text">三、 示例：点击按钮获取文本框内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81-%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">四、 自定义信号和槽函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E3%80%81-%E4%BF%A1%E5%8F%B7%E9%87%8D%E8%BD%BD"><span class="nav-number">5.</span> <span class="nav-text">五、 信号重载</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山丘之王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/anynone" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;anynone" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2022/04/07/qt-connect/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山丘之王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anynone">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          qt信号和槽函数
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-07 23:01:20" itemprop="dateCreated datePublished" datetime="2022-04-07T23:01:20+08:00">2022-04-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-12-14 02:30:47" itemprop="dateModified" datetime="2024-12-14T02:30:47+08:00">2024-12-14</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>Qt是一个跨平台的C++框架，主要用来开发GUI界面程序，也可以用来开发没有界面的命令行程序。支持功能类似Virtual studio。但是和Virtual Studio不同的是，Qt支持运行在Linux，Window，Macos等桌面系统，甚至支持在Android,IOS等移动设备运行。我比较好奇的是Qt生成的windows程序,反编译后的的汇编入口标识和Virtualbox studio是否相同，有时间会试试看。</p>
+</blockquote>
+<img src="/images/qt/2022-04-07_21-42.png" alt="2022-04-07_21-42" style="zoom:75%;margin-left:0px;" />
+
+<h4 id="一、-信号和槽函数"><a href="#一、-信号和槽函数" class="headerlink" title="一、 信号和槽函数"></a>一、 信号和槽函数</h4><p>在GUI编程过程中，当修改一个界面部件时，我们经常需要调整另一个部件的行为。比如下面登录界面。</p>
+<img src="/images/qt/2022-04-07_21-55.png" alt="2022-04-07_21-55" style="zoom:75%;margin-left:0px;" />
+
+<p>当选择手动设置选项，那么下面对应的IP地址和端口等配置项要变为可用状态。也就是说当一个部件修改要通知下面的部件调整显示状态变为可用。使用MFC做界面开发的大佬应该比较熟悉事件和函数绑定。比如下面代码实现单击BTN1按钮调用OnBtnClick函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ON_BN_CLICKED</span>(BTN1, OnBtnClick)</span><br></pre></td></tr></table></figure>
+
+<p>但是，Qt并没有使用这种函数回调的方式进行函数和事件的绑定，而是采用信号和槽机制替换回调方式。信号和槽函数用于Qt对象之前的通信，是Qt核心特性。Qt中的部件（比如按钮,单选框,列表框）提供了很多预定义的信号和信号槽。信号是指Qt的界面部件被点击或选中等操作后出发的操作信息，比如上面网络代理设置界面选择手动设置选项后会触发**<a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/qlistwidget.html#itemClicked">itemClicked</a>**信号。信号槽是响应特定信号而调用的函数。Qt 的小部件有许多预定义的插槽。还是拿上面的列表举例（假如使用QListWidget实现），QListWidget包含如下槽函数<br><img src="/images/qt/2022-04-07_22-25.png" alt="2022-04-07_22-25" style="zoom:80%;margin-left:0px;" /></p>
+<h4 id="二、-连接信号和槽函数"><a href="#二、-连接信号和槽函数" class="headerlink" title="二、 连接信号和槽函数"></a>二、 连接信号和槽函数</h4><p>Qt使用connect函数实现信号和槽函数的绑定，伪代码原型如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Object1发出了signal1信号， Object2对象执行他的slot1槽函数</span></span><br><span class="line"><span class="built_in">connect</span>(Object1, signal1, Object2, slot1)</span><br></pre></td></tr></table></figure>
+
+<p>当然，一般来说使用匿名函数作为槽函数更加方便，也是通常的做法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(Object1, signal1, [=]()&#123;</span><br><span class="line">    <span class="comment">// Object1出发signal1信号后立即执行这个匿名函数</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>使用信号和信号槽机制的好处是，发出信号的部件无需知道发出信号的处理函数。同样，槽函数也无需知道处理的是哪个部件发出的信号。这种松散耦合的设计保证只需要使用<code>connect</code>函数连接信号和槽函数，就可以保证一个信号的发生后对应的槽函数会被调用。并且信号和槽函数可以接受任意数量和任务类型的参数，并且完全是类型安全的。比如QLabel的槽函数setNum就是被重载的。</p>
+<img src="/images/qt/2022-04-07_22-41.png" alt="2022-04-07_22-41" style="zoom:80%;margin-left:0px;" />
+
+<p>信号也是可以重载的，但是没有找到对应的widget组件，哪天遇到了再补个图</p>
+<p>附：Qt5类文档 <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-5/classes.html">https://doc.qt.io/qt-5/classes.html</a></p>
+<h4 id="三、-示例：点击按钮获取文本框内容"><a href="#三、-示例：点击按钮获取文本框内容" class="headerlink" title="三、 示例：点击按钮获取文本框内容"></a>三、 示例：点击按钮获取文本框内容</h4><p>开发环境如下</p>
+<table>
+<thead>
+<tr>
+<th>开发环境</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系统版本</td>
+<td>linux mint 20.3, 内核版本5.4.0-107</td>
+</tr>
+<tr>
+<td>ide</td>
+<td>Qt Creator 4.14.2</td>
+</tr>
+<tr>
+<td>编译器</td>
+<td>Qmake</td>
+</tr>
+<tr>
+<td>Qt版本</td>
+<td>5.15.2</td>
+</tr>
+</tbody></table>
+<img src="/images/qt/2022-04-09_08-54.png" alt="2022-04-09_08-54" style="zoom:85%;margin-left:0px;" />
+
+<ol>
+<li><p>新建Qwidget项目</p>
+<p>由于只是示例按钮点击获取文本内容，创建Qdialg足够用了。ui文件暂时也不用，用代码创建按钮和文本输入框。过程和代码如下：</p>
+<img src="/images/qt/2022-04-09_08-58.png" alt="2022-04-09_08-58" style="zoom:80%;margin-left:0px;" />
+
+<img src="/images/qt/2022-04-09_08-58_1.png" alt="2022-04-09_08-58_1" style="zoom:80%;margin-left:0px;" />
+
+<img src="/images/qt/2022-04-09_08-59.png" alt="2022-04-09_08-59" style="zoom:80%;margin-left:0px;" />
+
+<img src="/images/qt/2022-04-09_09-00.png" alt="2022-04-09_09-00" style="zoom:80%;margin-left:0px;" />
+
+<img src="/images/qt/2022-04-09_09-01.png" alt="2022-04-09_09-01" style="zoom:80%;margin-left:0px;" />
+
+<img src="/images/qt/2022-04-09_09-01_1.png" alt="2022-04-09_09-01_1" style="zoom: 80%;margin-left:0px;" /></li>
+<li><p>代码实现增加按钮和文本输入框<br>Qt界面组件也是一个C++类，所以QDialg上的组件是在构造函数总添加并加载的，对话框关闭，也就是析构函数执行时释放资源。因此，只需要在Qdialog类的构造函数增加代码即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dialog.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QPushButton&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QLineEdit&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QDebug&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QMessageBox&quot;</span></span></span><br><span class="line"></span><br><span class="line">Dialog::<span class="built_in">Dialog</span>(QWidget *parent)</span><br><span class="line">    : <span class="built_in">QDialog</span>(parent)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;<span class="built_in">setFixedSize</span>(<span class="number">400</span>, <span class="number">300</span>); <span class="comment">// 对话框400x300，不可拉伸</span></span><br><span class="line">    QPushButton *btn = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="keyword">this</span>); <span class="comment">// 新建按钮</span></span><br><span class="line">    btn-&gt;<span class="built_in">setText</span>(<span class="string">&quot;按我打印文本框内容&quot;</span>);</span><br><span class="line">    btn-&gt;<span class="built_in">setGeometry</span>(<span class="built_in">QRect</span>(<span class="number">150</span>, <span class="number">200</span>, <span class="number">150</span>, <span class="number">40</span>));</span><br><span class="line"></span><br><span class="line">    QLineEdit *text = <span class="keyword">new</span> <span class="built_in">QLineEdit</span>(<span class="keyword">this</span>);</span><br><span class="line">    text-&gt;<span class="built_in">setText</span>(<span class="string">&quot;初始内容&quot;</span>);</span><br><span class="line">    text-&gt;<span class="built_in">setGeometry</span>(<span class="built_in">QRect</span>(<span class="number">50</span>, <span class="number">50</span>, <span class="number">300</span>, <span class="number">50</span>));</span><br><span class="line">    <span class="comment">// 弹出消息框显示文本框内容</span></span><br><span class="line">    QMessageBox *messageBox = <span class="keyword">new</span> <span class="built_in">QMessageBox</span>(<span class="keyword">this</span>);</span><br><span class="line">    <span class="comment">// 按钮按下获取文本框内容并打印</span></span><br><span class="line">    <span class="built_in">connect</span>(btn, &amp;QPushButton::clicked, [=]()&#123;</span><br><span class="line">        <span class="comment">// 打印日志</span></span><br><span class="line">        <span class="built_in">qDebug</span>() &lt;&lt; text-&gt;<span class="built_in">text</span>();</span><br><span class="line"></span><br><span class="line">        messageBox-&gt;<span class="built_in">setText</span>(text-&gt;<span class="built_in">text</span>());</span><br><span class="line">        messageBox-&gt;<span class="built_in">show</span>();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dialog::~<span class="built_in">Dialog</span>()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<img src="/images/qt/2022-04-09_11-24.png" alt="2022-04-09_11-24" style="zoom:80%;margin-left:0px;" /></li>
+</ol>
+<h4 id="四、-自定义信号和槽函数"><a href="#四、-自定义信号和槽函数" class="headerlink" title="四、 自定义信号和槽函数"></a>四、 自定义信号和槽函数</h4><p>前面写过信号和槽用于Qt对象之间的通信，那么信号的定义应该是Qt对象树的最顶端的对象支撑的。事实确实也是如此，不管是QWidget还是QPushButton都是继承自QObject，这点可以类比到JAVA所有对象都继承自Object。新建一个类CustomSignalTest并继承自QObject</p>
+<img src="/images/qt/2022-04-09_11-44.png" alt="2022-04-09_11-44" style="zoom:80%;margin-left:0px;" />
+
+<p>完成后打开头文件(customsignaltest.h)，在signals块定义一个eat信号</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> CUSTOMSIGNALTEST_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CUSTOMSIGNALTEST_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;QObject&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomSignalTest</span> :</span> <span class="keyword">public</span> QObject</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">CustomSignalTest</span><span class="params">(QObject *parent = <span class="literal">nullptr</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">signals:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>; <span class="comment">// 增加eat信号</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// CUSTOMSIGNALTEST_H</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>基于上面按钮点击后弹出文本框内容的例子， 当点击按钮后，发出eat信息，文本框接受到eat信号后将文本框的字体颜色改为红色。正常情况下我们不会这么做，如此击鼓传花只为演示自定义信号的使用。还是在Dialog构造函数添加代码,最终代码如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dialog.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QPushButton&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QLineEdit&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QDebug&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;QMessageBox&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;customsignaltest.h&quot;</span></span></span><br><span class="line"></span><br><span class="line">Dialog::<span class="built_in">Dialog</span>(QWidget *parent)</span><br><span class="line">    : <span class="built_in">QDialog</span>(parent)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;<span class="built_in">setFixedSize</span>(<span class="number">400</span>, <span class="number">300</span>); <span class="comment">// 对话框400x300，不可拉伸</span></span><br><span class="line">    QPushButton *btn = <span class="keyword">new</span> <span class="built_in">QPushButton</span>(<span class="keyword">this</span>); <span class="comment">// 新建按钮</span></span><br><span class="line">    btn-&gt;<span class="built_in">setText</span>(<span class="string">&quot;按我打印文本框内容&quot;</span>);</span><br><span class="line">    btn-&gt;<span class="built_in">setGeometry</span>(<span class="built_in">QRect</span>(<span class="number">150</span>, <span class="number">200</span>, <span class="number">150</span>, <span class="number">40</span>));</span><br><span class="line"></span><br><span class="line">    QLineEdit *text = <span class="keyword">new</span> <span class="built_in">QLineEdit</span>(<span class="keyword">this</span>);</span><br><span class="line">    text-&gt;<span class="built_in">setText</span>(<span class="string">&quot;初始内容&quot;</span>);</span><br><span class="line">    text-&gt;<span class="built_in">setGeometry</span>(<span class="built_in">QRect</span>(<span class="number">50</span>, <span class="number">50</span>, <span class="number">300</span>, <span class="number">50</span>));</span><br><span class="line">    <span class="comment">// 弹出消息框显示文本框内容</span></span><br><span class="line">    QMessageBox *messageBox = <span class="keyword">new</span> <span class="built_in">QMessageBox</span>(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义信号演示类</span></span><br><span class="line">    CustomSignalTest *ct = <span class="keyword">new</span> <span class="built_in">CustomSignalTest</span>(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 按钮按下获取文本框内容并打印</span></span><br><span class="line">    <span class="built_in">connect</span>(btn, &amp;QPushButton::clicked, [=]()&#123;</span><br><span class="line">        <span class="comment">// 打印日志</span></span><br><span class="line">        <span class="built_in">qDebug</span>() &lt;&lt; text-&gt;<span class="built_in">text</span>();</span><br><span class="line"></span><br><span class="line">        messageBox-&gt;<span class="built_in">setText</span>(text-&gt;<span class="built_in">text</span>());</span><br><span class="line">        messageBox-&gt;<span class="built_in">show</span>();</span><br><span class="line">        <span class="comment">// 发送eat信号</span></span><br><span class="line">        emit ct-&gt;<span class="built_in">eat</span>();</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当ct发出eat信号时，文本框变为红色</span></span><br><span class="line">    <span class="built_in">connect</span>(ct, &amp;CustomSignalTest::eat, [=]()&#123;</span><br><span class="line">        <span class="built_in">qDebug</span>()&lt;&lt; <span class="string">&quot;收到了eat信号&quot;</span>;</span><br><span class="line">        QPalette palette;</span><br><span class="line">        palette.<span class="built_in">setColor</span>(QPalette::Text, <span class="built_in">QColor</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">        text-&gt;<span class="built_in">setPalette</span>(palette);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dialog::~<span class="built_in">Dialog</span>()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<img src="/images/qt/2022-04-09_12-28.png" style="zoom:80%;margin-left:0px;" />
+
+
+
+<h4 id="五、-信号重载"><a href="#五、-信号重载" class="headerlink" title="五、 信号重载"></a>五、 信号重载</h4><p>上面自定义信号是没有任何参数的，有些时候是需要发送信号的同时传入参数，这个时候就需要对信号进行重载，部分代码如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="comment">// 重载eat方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">(QString footName)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>当触发了带参数的重载方法后，将发送信号时传入的字符串打印出来。增加重载方法后会发现上面的例子报错了。原因是connect无法判断应该接收哪个eat信号，所以需要声明,修改后的部分代码如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当ct发出eat信号时，文本框变为红色</span></span><br><span class="line"><span class="built_in"><span class="keyword">void</span></span> (CustomSignalTest:: *eatNoParam)() = &amp;CustomSignalTest::eat; <span class="comment">// 定义方法引用</span></span><br><span class="line"><span class="built_in">connect</span>(ct, eatNoParam, [=]()&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>()&lt;&lt; <span class="string">&quot;收到了eat信号&quot;</span>;</span><br><span class="line">    QPalette palette;</span><br><span class="line">    palette.<span class="built_in">setColor</span>(QPalette::Text, <span class="built_in">QColor</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">    text-&gt;<span class="built_in">setPalette</span>(palette);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>接收带参数的信号和无参数信号类似，首先发送信息位置增加参数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 按钮按下获取文本框内容并打印</span></span><br><span class="line"><span class="built_in">connect</span>(btn, &amp;QPushButton::clicked, [=]()&#123;</span><br><span class="line">    <span class="comment">// 打印日志</span></span><br><span class="line">    <span class="built_in">qDebug</span>() &lt;&lt; text-&gt;<span class="built_in">text</span>();</span><br><span class="line"></span><br><span class="line">    messageBox-&gt;<span class="built_in">setText</span>(text-&gt;<span class="built_in">text</span>());</span><br><span class="line">    messageBox-&gt;<span class="built_in">show</span>();</span><br><span class="line">    <span class="comment">// 发送eat信号</span></span><br><span class="line">    emit ct-&gt;<span class="built_in">eat</span>();</span><br><span class="line">    <span class="comment">// 发送带参数的信号</span></span><br><span class="line">    emit ct-&gt;<span class="built_in">eat</span>(<span class="string">&quot;我想喝鱼汤&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>接收带参数的信号，打印到终端</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义带参数的信号变量</span></span><br><span class="line"><span class="built_in"><span class="keyword">void</span></span> (CustomSignalTest:: *eatParamString)(QString) = &amp;CustomSignalTest::eat;</span><br><span class="line"><span class="built_in">connect</span>(ct, eatParamString, [=](QString content)&#123;</span><br><span class="line">    <span class="built_in">qDebug</span>() &lt;&lt; content; <span class="comment">// 打印到终端</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<img src="/images/qt/2022-04-09_13-05.png" alt="2022-04-09_13-05" style="zoom:80%;margin-left:0px;" />
+
+
+
+<p>附：</p>
+<p>​    qt类文档： <a target="_blank" rel="noopener" href="https://doc.qt.io/qt-6/classes.html">https://doc.qt.io/qt-6/classes.html</a></p>
+<p>​    qt资源下载地址： <a target="_blank" rel="noopener" href="https://download.qt.io/">https://download.qt.io/</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/qt-connect/" rel="tag"># qt,connect</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/01/linux-command-network/" rel="prev" title="linux网络相关命令(ubuntu)">
+                  <i class="fa fa-chevron-left"></i> linux网络相关命令(ubuntu)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/04/07/linux-build-sometime/" rel="next" title="聊聊linux源码编译">
+                  聊聊linux源码编译 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">山丘之王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="获取类结构之前写过一个java反射的理解java反射的理解获取类结构本质上就是获取类的java.lang.Class对象 拿Person类举例123456789101112131415161718192021222324252627package com.mick.test;public class Person &amp;#123;    public String name;    private i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java反射的使用">
+<meta property="og:url" content="https://anynone.github.io/2021/09/27/java-reflection-2/index.html">
+<meta property="og:site_name" content="anynone">
+<meta property="og:description" content="获取类结构之前写过一个java反射的理解java反射的理解获取类结构本质上就是获取类的java.lang.Class对象 拿Person类举例123456789101112131415161718192021222324252627package com.mick.test;public class Person &amp;#123;    public String name;    private i">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-27T14:24:01.000Z">
+<meta property="article:modified_time" content="2024-12-13T18:30:47.333Z">
+<meta property="article:author" content="山丘之王">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://anynone.github.io/2021/09/27/java-reflection-2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://anynone.github.io/2021/09/27/java-reflection-2/","path":"2021/09/27/java-reflection-2/","title":"java反射的使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>java反射的使用 | anynone</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">anynone</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <img src="/images/head.jpg">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%B1%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">获取类结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8B%BFPerson%E7%B1%BB%E4%B8%BE%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">拿Person类举例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B1%BB%E5%B1%9E%E6%80%A7%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">类属性操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%B1%BB%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">类方法调用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%8D%E5%B0%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">反射常用方法</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山丘之王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/anynone" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;anynone" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2021/09/27/java-reflection-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山丘之王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anynone">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java反射的使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-27 22:24:01" itemprop="dateCreated datePublished" datetime="2021-09-27T22:24:01+08:00">2021-09-27</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-12-14 02:30:47" itemprop="dateModified" datetime="2024-12-14T02:30:47+08:00">2024-12-14</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h5 id="获取类结构"><a href="#获取类结构" class="headerlink" title="获取类结构"></a>获取类结构</h5><p>之前写过一个java反射的理解<a target="_blank" rel="noopener" href="https://633521.com/java-reflection.html" title="java反射的理解">java反射的理解</a><br>获取类结构本质上就是获取类的java.lang.Class对象</p>
+<h5 id="拿Person类举例"><a href="#拿Person类举例" class="headerlink" title="拿Person类举例"></a>拿Person类举例</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mick.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sex;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, Integer sex)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">speck</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(name + <span class="string">&quot;:&quot;</span> + (sex&gt;<span class="number">0</span>? <span class="string">&quot;男&quot;</span>:<span class="string">&quot;女&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Person&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, sex=&quot;</span> + sex +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="类属性操作"><a href="#类属性操作" class="headerlink" title="类属性操作"></a>类属性操作</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; person = Class.forName(<span class="string">&quot;com.mick.test.Person&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建Person对象用于测试</span></span><br><span class="line">Person test33 = (Person)person.getDeclaredConstructor(String.class, Integer.class).newInstance(<span class="string">&quot;test33&quot;</span>, <span class="number">1111</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有定义的方法</span></span><br><span class="line">Field[] declaredFields = person.getDeclaredFields();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (Field field:declaredFields) &#123;</span><br><span class="line">    field.setAccessible(<span class="keyword">true</span>); <span class="comment">// 访问改为public</span></span><br><span class="line">    System.out.println(field.get(test33).toString());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 单独获取一个私有属性</span></span><br><span class="line">Field sex = person.getDeclaredField(<span class="string">&quot;sex&quot;</span>);</span><br><span class="line"><span class="comment">// 设置为可访问</span></span><br><span class="line">sex.setAccessible(<span class="keyword">true</span>);</span><br><span class="line"><span class="comment">// 修改对象属性值</span></span><br><span class="line">sex.setInt(test33, <span class="number">3333333</span>);</span><br><span class="line">System.out.println(test33);</span><br></pre></td></tr></table></figure>
+
+<h5 id="类方法调用"><a href="#类方法调用" class="headerlink" title="类方法调用"></a>类方法调用</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Class&lt;?&gt; person = Class.forName(<span class="string">&quot;com.mick.test.Person&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建Person对象用于测试</span></span><br><span class="line">Person test33 = (Person)person.getDeclaredConstructor(String.class, Integer.class).newInstance(<span class="string">&quot;test33&quot;</span>, <span class="number">1111</span>);</span><br><span class="line"></span><br><span class="line">Method[] declaredMethods = person.getDeclaredMethods();</span><br><span class="line"><span class="keyword">for</span> (Method m:declaredMethods) &#123;</span><br><span class="line">    System.out.println(m.getName());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Method speck = person.getDeclaredMethod(<span class="string">&quot;speck&quot;</span>);</span><br><span class="line">speck.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">System.out.println(speck.invoke(test33)); <span class="comment">// 返回值和直接调用speck返回值一致，这里没有返回值，返回null</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="反射常用方法"><a href="#反射常用方法" class="headerlink" title="反射常用方法"></a>反射常用方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">      Class.getDeclaredAnnotations();</span><br><span class="line">      Class.getDeclaredAnnotation(<span class="keyword">null</span>);</span><br><span class="line">      Class.getDeclaredConstructors();</span><br><span class="line">      Class.getDeclaredConstructor(<span class="keyword">null</span>);</span><br><span class="line">      Class.getDeclaredFields();</span><br><span class="line">      Class.getDeclaredField(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">      Class.getDeclaredMethods();</span><br><span class="line">      Class.getDeclaredMethod(<span class="keyword">null</span>);</span><br><span class="line">      Field.setAccessible();</span><br><span class="line">Method.setAccessible();</span><br><span class="line">Method.invoke();</span><br><span class="line">Field.setAccessible();</span><br><span class="line">Field.set*()</span><br><span class="line">Field.get*()</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"># java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/27/elasticsearch-cons/" rel="prev" title="elasticsearch 问题解决汇总（随时更新）">
+                  <i class="fa fa-chevron-left"></i> elasticsearch 问题解决汇总（随时更新）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/27/java-reflection-1/" rel="next" title="聊聊java的反射">
+                  聊聊java的反射 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">山丘之王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

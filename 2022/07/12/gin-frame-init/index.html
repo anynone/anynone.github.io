@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="gin框架目前应该是go web开发用的最多的一款框架，目前已经有60k星。趁着今天请假，从头搭建个gin项目mvc骨架。  新建项目，按照充血模型新建gin框架开发骨架,按照开发习惯建立些空的文件    bin目录: main函数位置,以及后续可能的可执行文件源代码  config目录: 配置文件已经配置加载代码  controller: 控制器目录  model: 模型目录,包含dao和对应的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gin框架环境搭建">
+<meta property="og:url" content="https://anynone.github.io/2022/07/12/gin-frame-init/index.html">
+<meta property="og:site_name" content="anynone">
+<meta property="og:description" content="gin框架目前应该是go web开发用的最多的一款框架，目前已经有60k星。趁着今天请假，从头搭建个gin项目mvc骨架。  新建项目，按照充血模型新建gin框架开发骨架,按照开发习惯建立些空的文件    bin目录: main函数位置,以及后续可能的可执行文件源代码  config目录: 配置文件已经配置加载代码  controller: 控制器目录  model: 模型目录,包含dao和对应的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://anynone.github.io/images/gin-frame-init/1.jpg">
+<meta property="article:published_time" content="2022-07-12T03:07:40.000Z">
+<meta property="article:modified_time" content="2024-12-13T18:30:47.333Z">
+<meta property="article:author" content="山丘之王">
+<meta property="article:tag" content="gin">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://anynone.github.io/images/gin-frame-init/1.jpg">
+
+
+<link rel="canonical" href="https://anynone.github.io/2022/07/12/gin-frame-init/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://anynone.github.io/2022/07/12/gin-frame-init/","path":"2022/07/12/gin-frame-init/","title":"gin框架环境搭建"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>gin框架环境搭建 | anynone</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">anynone</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <img src="/images/head.jpg">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山丘之王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/anynone" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;anynone" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2022/07/12/gin-frame-init/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山丘之王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anynone">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          gin框架环境搭建
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 11:07:40" itemprop="dateCreated datePublished" datetime="2022-07-12T11:07:40+08:00">2022-07-12</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-12-14 02:30:47" itemprop="dateModified" datetime="2024-12-14T02:30:47+08:00">2024-12-14</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>gin框架目前应该是go web开发用的最多的一款框架，目前已经有60k星。趁着今天请假，从头搭建个gin项目mvc骨架。</p>
+<blockquote>
+<p>新建项目，按照充血模型新建gin框架开发骨架,按照开发习惯建立些空的文件</p>
+</blockquote>
+<p><img src="/images/gin-frame-init/1.jpg" alt="1"></p>
+<ul>
+<li><p>bin目录: main函数位置,以及后续可能的可执行文件源代码</p>
+</li>
+<li><p>config目录: 配置文件已经配置加载代码</p>
+</li>
+<li><p>controller: 控制器目录</p>
+</li>
+<li><p>model: 模型目录,包含dao和对应的方法</p>
+</li>
+<li><p>router: 路由配置目录</p>
+</li>
+<li><p>service: 服务层,也可以改为domain</p>
+<p>这里并没有增加middleware层,随用随加.如果可预见的中间件不多则放在router层一起</p>
+</li>
+</ul>
+<blockquote>
+<p>main.go代码</p>
+</blockquote>
+<p>main主要做路由注册,配置初始化,http监听,数据库初始化等.对应调用router,config,model层</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	engine := gin.Default()</span><br><span class="line">	<span class="comment">// 初始化配置文件</span></span><br><span class="line">	config.InitConfig()</span><br><span class="line">	<span class="comment">// 注册路由</span></span><br><span class="line">	router.RegisterRouter(engine)</span><br><span class="line">	<span class="comment">// 初始化模型,数据库连接</span></span><br><span class="line">	model.InitDb()</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err := engine.Run(config.Properties.App.Host + <span class="string">&quot;:&quot;</span> + strconv.Itoa(config.Properties.App.Port)); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Println(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>config层: 主要做配置文件读取, 本身和任何层不发生关联,完全由其他层调用,任意层次结构都可以调用config配置,后续方便各个模块读取配置文件,这里使用viper进行配置文件读取</p>
+</blockquote>
+<p>配置文件采用yaml,示例配置文件如下</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">app:</span></span><br><span class="line">  <span class="attr">serviceName:</span> <span class="string">demo_learn</span></span><br><span class="line">  <span class="attr">appMode:</span> <span class="string">release</span></span><br><span class="line">  <span class="attr">host:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8081</span></span><br><span class="line"><span class="attr">db:</span></span><br><span class="line">  <span class="attr">driverName:</span> <span class="string">&quot;mysql&quot;</span></span><br><span class="line">  <span class="attr">dsn:</span> <span class="string">&quot;root:123456@tcp(172.17.0.2:3306)/gorm?charset=utf8&amp;parseTime=True&amp;loc=Local&quot;</span></span><br><span class="line">  <span class="attr">defaultStringSize:</span> <span class="number">100</span></span><br><span class="line">  <span class="attr">dontSupportNullAsDefaultValue:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>config配置代码如下</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> config</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;github.com/spf13/viper&quot;</span></span><br><span class="line">	<span class="string">&quot;log&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> DbConfig <span class="keyword">struct</span> &#123;</span><br><span class="line">	DriverName                    <span class="keyword">string</span></span><br><span class="line">	DSN                           <span class="keyword">string</span></span><br><span class="line">	DefaultStringSize             <span class="keyword">int</span></span><br><span class="line">	DontSupportNullAsDefaultValue <span class="keyword">bool</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> AppConfig <span class="keyword">struct</span> &#123;</span><br><span class="line">	ServiceName <span class="keyword">string</span></span><br><span class="line">	AppMode     <span class="keyword">string</span></span><br><span class="line">	Host        <span class="keyword">string</span></span><br><span class="line">	Port        <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Config <span class="keyword">struct</span> &#123;</span><br><span class="line">	App AppConfig</span><br><span class="line">	Db  DbConfig</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Properties Config</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">InitConfig</span><span class="params">()</span></span> &#123;</span><br><span class="line">	viper.SetTypeByDefaultValue(<span class="literal">true</span>)</span><br><span class="line">	setDefaultProperties()</span><br><span class="line">	viper.SetConfigName(<span class="string">&quot;config&quot;</span>)</span><br><span class="line">	viper.SetConfigType(<span class="string">&quot;yaml&quot;</span>)</span><br><span class="line">	viper.AddConfigPath(<span class="string">&quot;config&quot;</span>)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> err := viper.ReadInConfig(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> _, ok := err.(viper.ConfigFileNotFoundError); ok &#123;</span><br><span class="line">			<span class="built_in">panic</span>(<span class="string">&quot;配置文件未找到&quot;</span>)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="built_in">panic</span>(err)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	err := viper.Unmarshal(&amp;Properties)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err)</span><br><span class="line">	&#125;</span><br><span class="line">	log.Println(Properties)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setDefaultProperties</span><span class="params">()</span></span> &#123;</span><br><span class="line">	viper.SetDefault(<span class="string">&quot;app&quot;</span>, AppConfig&#123;</span><br><span class="line">		ServiceName: <span class="string">&quot;demoervicname&quot;</span>,</span><br><span class="line">		AppMode:     <span class="string">&quot;debug&quot;</span>,</span><br><span class="line">		Host:        <span class="string">&quot;127.0.0.1&quot;</span>,</span><br><span class="line">		Port:        <span class="number">8080</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">	viper.SetDefault(<span class="string">&quot;db&quot;</span>, DbConfig&#123;</span><br><span class="line">		DriverName:                    <span class="string">&quot;mysql&quot;</span>,</span><br><span class="line">		DSN:                           <span class="string">&quot;&quot;</span>,</span><br><span class="line">		DefaultStringSize:             <span class="number">255</span>,</span><br><span class="line">		DontSupportNullAsDefaultValue: <span class="literal">true</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>router层比较简单,负责路由注册,中间件加载操作</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> router</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;awesomeProject1/controller&quot;</span></span><br><span class="line">	<span class="string">&quot;github.com/gin-gonic/gin&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">RegisterRouter</span><span class="params">(engine *gin.Engine)</span> *<span class="title">gin</span>.<span class="title">Engine</span></span> &#123;</span><br><span class="line"></span><br><span class="line">	engine.Use(<span class="function"><span class="keyword">func</span><span class="params">(context *gin.Context)</span></span> &#123;</span><br><span class="line">		<span class="comment">// 中间件代码</span></span><br><span class="line">		<span class="comment">////////</span></span><br><span class="line">		context.Next()</span><br><span class="line">	&#125;)</span><br><span class="line">    <span class="comment">// 路由注册</span></span><br><span class="line">	g := engine.Group(<span class="string">&quot;/user&quot;</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		g.GET(<span class="string">&quot;/add&quot;</span>, controller.UserController&#123;&#125;.Add)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> engine</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>router层要调用控制器, 控制器实现HandlerFunc即可</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> controller</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;github.com/gin-gonic/gin&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> UserController <span class="keyword">struct</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(receiver UserController)</span> <span class="title">Add</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	c.JSON(<span class="number">200</span>, <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">interface</span>&#123;&#125;&#123;</span><br><span class="line">		<span class="string">&quot;say&quot;</span>: <span class="string">&quot;hello golang&quot;</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>模型层增加model.go做数据初始化等操作,本来想要加到config层做数据库初始化,但是考虑到层级调用以及后续开发可能出现的低级错误问题,则将数据库初始化放在了model层</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> model</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;awesomeProject1/config&quot;</span></span><br><span class="line">	<span class="string">&quot;gorm.io/driver/mysql&quot;</span></span><br><span class="line">	<span class="string">&quot;gorm.io/gorm&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dbConn *gorm.DB</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">InitDb</span><span class="params">()</span></span> &#123;</span><br><span class="line">	dbConn, err := gorm.Open(mysql.New(mysql.Config&#123;</span><br><span class="line">		DriverName: <span class="string">&quot;mysql&quot;</span>,</span><br><span class="line">		DSN:        config.Properties.Db.DSN,</span><br><span class="line">	&#125;), &amp;gorm.Config&#123;&#125;)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 避免框架骨架阶段报变量没有使用错误,特殊需求注释掉</span></span><br><span class="line">	dbConn.DisableAutomaticPing = <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>需要注意的是层级调用不要出现循环调用,调用顺序是 controller-&gt;service-&gt;model, config层可以任意位置被调用.并保持config层的独立性</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/gin/" rel="tag"># gin</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/20/20220420-dockerfile-build/" rel="prev" title="Dockerfile编写和镜像构建">
+                  <i class="fa fa-chevron-left"></i> Dockerfile编写和镜像构建
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/09/29/20220420-gdb/" rel="next" title="gdb常用操作">
+                  gdb常用操作 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">山丘之王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

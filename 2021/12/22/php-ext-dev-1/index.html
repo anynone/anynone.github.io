@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"anynone.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="万事开头难，为了开头简单一点，按照惯例先完成Hello World的编写。 首先找到php源码包，里面有个ext目录。ext目录包含php内置的一些扩展包。如下   比较特殊的是ext_skel.php，这是php扩展的创建脚本，执行下面命令可以创建一个扩展 1php .&#x2F;ext_skel.php --ext my_ext  出现下面的结果表示正常   一个扩展就这么创建完成了，扩展名称my_ex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php扩展开发（一）">
+<meta property="og:url" content="https://anynone.github.io/2021/12/22/php-ext-dev-1/index.html">
+<meta property="og:site_name" content="anynone">
+<meta property="og:description" content="万事开头难，为了开头简单一点，按照惯例先完成Hello World的编写。 首先找到php源码包，里面有个ext目录。ext目录包含php内置的一些扩展包。如下   比较特殊的是ext_skel.php，这是php扩展的创建脚本，执行下面命令可以创建一个扩展 1php .&#x2F;ext_skel.php --ext my_ext  出现下面的结果表示正常   一个扩展就这么创建完成了，扩展名称my_ex">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://anynone.github.io/images/php-ext-dev-1-1.jpg">
+<meta property="og:image" content="https://anynone.github.io/images/php-ext-dev-1-2.jpg">
+<meta property="og:image" content="https://anynone.github.io/images/php-ext-dev-1-3.jpg">
+<meta property="og:image" content="https://anynone.github.io/images/php-ext-dev-1-4.jpg">
+<meta property="article:published_time" content="2021-12-22T14:11:55.000Z">
+<meta property="article:modified_time" content="2024-12-13T18:30:47.333Z">
+<meta property="article:author" content="山丘之王">
+<meta property="article:tag" content="php扩展开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://anynone.github.io/images/php-ext-dev-1-1.jpg">
+
+
+<link rel="canonical" href="https://anynone.github.io/2021/12/22/php-ext-dev-1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://anynone.github.io/2021/12/22/php-ext-dev-1/","path":"2021/12/22/php-ext-dev-1/","title":"php扩展开发（一）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>php扩展开发（一） | anynone</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">anynone</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <img src="/images/head.jpg">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山丘之王</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/anynone" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;anynone" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://anynone.github.io/2021/12/22/php-ext-dev-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山丘之王">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="anynone">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          php扩展开发（一）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-12-22 22:11:55" itemprop="dateCreated datePublished" datetime="2021-12-22T22:11:55+08:00">2021-12-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-12-14 02:30:47" itemprop="dateModified" datetime="2024-12-14T02:30:47+08:00">2024-12-14</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>万事开头难，为了开头简单一点，按照惯例先完成Hello World的编写。</p>
+<p>首先找到php源码包，里面有个ext目录。ext目录包含php内置的一些扩展包。如下</p>
+<img src="/images/php-ext-dev-1-1.jpg" alt="php-ext-dev-1-1" style="margin-left:0px;" />
+
+<p>比较特殊的是<code>ext_skel.php</code>，这是php扩展的创建脚本，执行下面命令可以创建一个扩展</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php ./ext_skel.php --ext my_ext</span><br></pre></td></tr></table></figure>
+
+<p>出现下面的结果表示正常</p>
+<img src="/images/php-ext-dev-1-2.jpg" alt="php-ext-dev-1-2" style="margin-left: 0px; zoom: 67%;" />
+
+<p>一个扩展就这么创建完成了，扩展名称<code>my_ext</code>。进入到扩展目录，使用下面命令编译扩展到php运行环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">phpize &amp;&amp; ./configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>一般不会出问题，如果编译失败或者报错，检查phpize，php-config是否在PATH目录，make， gcc，gcc-c++或者g++是否安装</p>
+<p>此时扩展还未加载，需要增加扩展配置文件，如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;extension=my_ext.so&quot;</span> &gt; /usr/<span class="built_in">local</span>/php/php-7.4.27/etc/conf.d/my_ext.ini</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装位置不同，配置文件路径会有所不同。使用<code>php --ini</code>命令查看当前php环境配置文件路径</p>
+</blockquote>
+<p>然后查看扩展是否正常</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php --ri my_ext</span><br></pre></td></tr></table></figure>
+
+<img src="/images/php-ext-dev-1-3.jpg" alt="php-ext-dev-1-3" style="margin-left: 0px; zoom: 67%;" />
+
+<p>默认情况下，扩展创建脚本会创建测试函数，分别是<code>my_ext_test1</code>和<code>my_ext_test2</code></p>
+<p>进入php交互模式测试扩展是否正常运行</p>
+<img src="/images/php-ext-dev-1-4.jpg" alt="php-ext-dev-1-4" style="margin-left: 0px; zoom: 67%;" />
+
+<p>这就是php扩展的HELLO WORLD了。后续可以基于此进行扩展开发</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/php%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91/" rel="tag"># php扩展开发</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/12/14/git-precommit-docker-md/" rel="prev" title="docker环境 git 提交前验证php语法">
+                  <i class="fa fa-chevron-left"></i> docker环境 git 提交前验证php语法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/01/01/docker-reject-bind-port/" rel="next" title="禁用docker开放的端口">
+                  禁用docker开放的端口 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">山丘之王</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
